@@ -1,0 +1,31 @@
+{{ define "content" }}
+
+<div id="content">
+    <header>
+    <h1>Weloveminitel - Zosio</h1>
+    </header>
+        
+        <div id="slider">
+            {{range .}}
+                <img src="{{.}}"/>
+            {{end}}
+        </div>
+    
+</div>
+
+<aside id="connexion">
+    <label for="login">Login</label>
+    <input type="text" id="login"/>
+    <label for="password">Password</label>
+    <input type="password" id="password"/>
+    <button>Se connecter</button>
+    <button>Entrer anonymement</button>
+</aside>
+
+<script>
+    var ele = document.getElementById("slider");//on selectionne l'element qui contient les images 
+    slider = new Nounours(ele,3000);//on creer le slider
+    slider.reset();//on le reset
+</script>
+
+{{ end }}
