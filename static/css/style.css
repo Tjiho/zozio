@@ -113,6 +113,7 @@ h1
     display: inline-block;
     margin: 50px;
     vertical-align: middle;
+    opacity: 0.8; 
 }
 
 #fichiers .dossier
@@ -122,9 +123,10 @@ h1
     position: relative;
     cursor: pointer;
     opacity: 0.8;
+    color:black;
 }
 
-#fichiers .dossier:hover
+#fichiers .dossier:hover,#fichiers .ajout:hover
 {
     border: 3px solid rgba(255, 0, 255, 0.9);
     margin: 47px;
@@ -143,12 +145,6 @@ h1
     font-size: 1.2em;
 }
 
-#fichiers .ajout
-{
-    
-    border: 3px solid rgba(255, 0, 255, 0.9);
-    margin: 47px; 
-}
 
 #fichiers .ajout img
 {
