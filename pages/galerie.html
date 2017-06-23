@@ -1,8 +1,8 @@
 {{ define "content" }}
-<h1><strong>Zosio</strong>.Weloveminitel.eu</h1>
+
 <section id="fichiers">
-    {{range .}}
-                <a href="galerie/{{.}}" class="dossier">
+    {{range .Files}}
+                <a href="galerie/{{.}}.html" class="dossier">
                     <h3>{{.}}</h3>
                 </a>
     {{end}}

@@ -6,7 +6,7 @@
     </header>
         
         <div id="slider">
-            {{range .}}
+            {{range .Files}}
                 <img src="{{.}}"/>
             {{end}}
         </div>
@@ -19,7 +19,7 @@
     <label for="password">Password</label>
     <input type="password" id="password"/>
     <button>Se connecter</button>
-    <a href="/galerie"><button>Entrer anonymement</button></a>
+    <a href="/galerie.html"><button>Entrer anonymement</button></a>
 </aside>
 
 <script>

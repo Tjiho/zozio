@@ -9,9 +9,9 @@ import (
     "io/ioutil"
 )
 
-type DetailGalerie struct {
-    Titre    string
-    Fichiers []string
+type Link struct {
+    Image   string
+    Link    string
 }
 
 var router = mux.NewRouter()
@@ -79,18 +79,39 @@ func couleur(response http.ResponseWriter, request *http.Request) {
 
 
 func galerie(response http.ResponseWriter, request *http.Request) {
+    
     files, _ := ioutil.ReadDir("./static/galerie")
     names_files := []string{}
-    
+    links := []Link{
+        Link{
+            Image:  "/static/images/home.svg",
+            Link:   "/index.html",
+        },
+    }
     for _, f := range files {
             names_files = Extend(names_files,f.Name())
             
     }
+    
+
+    data := struct {
+        Files []string
+        Links []Link
+        Nav bool
+        Content_id string
+    } {
+        names_files,
+        links,
+        true,
+        "",
+    }
+        
+    
     //colors := []string{"#27bfe7","#5227e7","#c927e7","#f16bcd","#e71e50","#e78027","#e7bd27","#27e763","#4baf6b"}
     t := template.New("Label de ma template")
     
     t = template.Must(t.ParseFiles("pages/template.html", "pages/galerie.html"))
-    err := t.ExecuteTemplate(response, "page", names_files)
+    err := t.ExecuteTemplate(response, "page", data)
  
     if err != nil {
         log.Fatalf("Template execution: %s", err)
@@ -100,12 +121,39 @@ func galerie(response http.ResponseWriter, request *http.Request) {
 func detailGalerie(response http.ResponseWriter, request *http.Request){
     vars := mux.Vars(request)
     files, _ := filepath.Glob("static/galerie/"+vars["dossier"]+"/*");
+    links := []Link{
+        Link{
+            Image:  "/static/images/retour.svg",
+            Link:   "/galerie.html",
+        },
+        Link{
+            Image:  "/static/images/home.svg",
+            Link:   "/index.html",
+        },
+        Link{
+            Image:  "/static/images/upload.svg",
+            Link:   "/index.html",
+        },
+        
+    }
 
-    p := DetailGalerie{vars["dossier"], files}
+    data := struct {
+        Files []string
+        Title string
+        Links []Link
+        Nav bool
+        Content_id string
+    } {
+        files,
+        vars["dossier"],
+        links,
+        true,
+        "flou",
+    }
 
     t := template.New("Label de ma template")
     t = template.Must(t.ParseFiles("pages/template.html", "pages/detailGalerie.html"))
-    err := t.ExecuteTemplate(response, "page", p)
+    err := t.ExecuteTemplate(response, "page", data)
     
     if err != nil {
         log.Fatalf("Template execution: %s", err)
@@ -113,11 +161,24 @@ func detailGalerie(response http.ResponseWriter, request *http.Request){
 }
 
 func index(response http.ResponseWriter, request *http.Request) {
+
     files, _ := filepath.Glob("static/galerie/top/*");
     t := template.New("Label de ma template")
+
+    data := struct {
+        Files []string
+        Links []Link
+        Nav bool
+        Content_id string
+    } {
+        files,
+        []Link{},
+        false,
+        "",
+    }
     
     t = template.Must(t.ParseFiles("pages/template.html", "pages/index.html"))
-    err := t.ExecuteTemplate(response, "page", files)
+    err := t.ExecuteTemplate(response, "page", data)
  
     if err != nil {
         log.Fatalf("Template execution: %s", err)

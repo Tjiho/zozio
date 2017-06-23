@@ -1,14 +1,11 @@
 {{ define "content" }}
-<div id="flou">
-    <nav>
-        <img src="/static/images/retour.svg" id="retour"/>
-        <h2>{{.Titre}}</h2>
-    </nav>
-    <section id="fichiers">
-        {{range .Fichiers}}
-                    <!-- <div class="dossier" style="background-image:url('/{{.}}');"></div> -->
-                    <img src="/{{.}}" class="fichier"/>
-        {{end}}
-    </section>
-</div>
+<nav>
+    <h2>{{.Title}}</h2>
+</nav>
+<section id="fichiers">
+    {{range .Files}}
+                <!-- <div class="dossier" style="background-image:url('/{{.}}');"></div> -->
+                <img src="/{{.}}" class="fichier"/>
+    {{end}}
+</section>
 {{end}}

@@ -1,6 +1,14 @@
 @font-face 
 {
-	font-family: 'regular';
+	/*
+        Copyright (c) 2011, Pablo Impallari (www.impallari.com|impallari@gmail.com),
+        Copyright (c) 2011, Igino Marini. (www.ikern.com|mail@iginomarini.com),
+        with Reserved Font Name Kaushan Script.
+
+        This Font Software is licensed under the SIL Open Font License, Version 1.1.
+        This license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL
+    */
+    font-family: 'regular';
 	src: url("/static/fonts/KaushanScript-Regular.otf") format("opentype");
 }
 
@@ -26,26 +34,14 @@ html
 #all-content
 {
     width: 100%;
-    min-height: calc(100% - 50px);
+    min-height: calc(100% - 62px);
     position: relative;
 
 }
 
-footer
+.flou
 {
-    height: 50px; 
-    width: 100%;
-    background-color: black;
-}
-#flou
-{
-    
-    position: absolute;
-    top:0px;
-    left: 0px;
     background-color: rgba(255,255,255,0.5);
-    width: 100%;
-    min-height: 100%;
 }
 
 header
@@ -53,6 +49,26 @@ header
     height: 100px;
     padding-top: 30px;
     text-align: center;
+}
+
+footer
+{
+    background-color: black;
+    padding: 5px;
+}
+
+footer nav a
+{
+    border: 1px solid white;
+    height: 40px;
+    padding: 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+footer nav a img
+{
+    height: 40px;
 }
 
 /*-- -- -- -- -- -- landing page -- -- -- -- -- --*/
@@ -135,95 +151,6 @@ h1 strong
 }
 
 
-/*
-h1
-{
-    text-align: center;
-    border-bottom: 2px solid black;
-    display: inline-block;
-    margin: auto;
-    text-shadow: 1px 1px rgba(255, 0, 255, 0.8), -1px -1px rgba(255, 0, 255, 0.8);
-    font-family: regular;
-    min-width: 50%;
-}
-
-#slider
-{
-    width: 80%;
-    height: 350px;
-    margin: auto;
-    margin-top: calc(50vh - 100px - 175px);
-      
-}
-
-#slider img
-{
-    border: 3px double rgba(255, 0, 255, 0.9);
-    height: calc(100% - 6px) !important;
-}
-
-#content
-{
-    width: 70%;
-    float: left;
-}
-
-
-
-#connexion
-{
-    background-color: rgba(255, 255, 255, 0.7);
-    height: 80%;
-    margin-top: 5%;
-    padding: 10px;
-    float: right;
-    margin-right: 10px;
-    width: 20%;
-    max-width: 250px;
-    min-width: 250px;
-    text-align: center;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 0, 255, 0.8);
-}
-
-#connexion label
-{
-    display: block;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    font-weight: 800;
-    font-size: 1.2em;
-}
-
-#connexion input
-{
-    -webkit-border-image: -webkit-gradient(linear, left, right, from(green), to(black), color-stop(0.5, black), color-stop(0.5, green)) 21 30 30 21 repeat repeat;
-    border-color: rgba(255, 0, 255, 1);
-    border-width: 0px;
-    border-bottom-width: 3px;
-    background-color: transparent;
-    width: 100%;
-}
-
-#connexion button
-{
-    border: 0px solid black;
-    margin-top: 15px;
-    display: block;
-    width: 100%;
-    background-color: rgba(0, 220, 83, 0.9);
-    height: 40px;
-    border-radius: 5px;
-    color:white;
-    font-size: 1.1em;
-    cursor: pointer;
-}*/
-
-/* 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-*/
 
 h2
 {
@@ -233,16 +160,6 @@ h2
     margin: auto;
     
     font-family: regular;
-    
-}
-
-
-#retour
-{
-    float: left;
-    border: 1px solid black;
-    height: 40px;
-    padding: 10px;
     
 }
 
@@ -295,13 +212,15 @@ h2
 #fichiers .dossier h3
 {
     position: absolute;
-    left: 5%;
-    bottom: 10px;
-    width: 90%;
-    border-top: 1px solid black;
+    font-family: regular;
+    bottom: 80px;
+    /*border-top: 1px solid black;*/
     margin: 0;
     padding: 0;
-    font-size: 1.2em;
+    font-size: 1.8em;
+    text-align: center;
+    width: 100%;
+
 }
 
 
