@@ -2,10 +2,10 @@
 <nav>
     <h2>{{.Title}}</h2>
 </nav>
-<section id="fichiers">
+<section id="fichiers" class="details">
     {{range .Files}}
-                <!-- <div class="dossier" style="background-image:url('/{{.}}');"></div> -->
-                <img src="/{{.}}" class="fichier"/>
+                <div class="image" style="background-image:url('/{{.}}');"></div>
+                <!-- <img src="/{{.}}" class="fichier"/> -->
     {{end}}
 </section>
 {{end}}

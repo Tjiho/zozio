@@ -2,10 +2,11 @@ package main
 
 import (
     "net/http"
+    "net/url"
 	"github.com/gorilla/mux"
+    //"github.com/gorilla/securecookie"
     "html/template"
     "log"
-    "path/filepath"
     "io/ioutil"
 )
 
@@ -13,6 +14,11 @@ type Link struct {
     Image   string
     Link    string
 }
+/*
+var cookieHandler = securecookie.New(
+     securecookie.GenerateRandomKey(64),
+     securecookie.GenerateRandomKey(32)
+)*/
 
 var router = mux.NewRouter()
 
@@ -27,6 +33,7 @@ func main(){
     router.HandleFunc("/couleur.html", couleur)
     router.HandleFunc("/galerie/{dossier}.html", detailGalerie)
     router.HandleFunc("/licenses.html", licenses)
+    router.HandleFunc("/login.html", login)
 
     s1 := http.StripPrefix("/static/",http.FileServer(http.Dir("./static/")))
     router.PathPrefix("/").Handler(s1)
@@ -103,14 +110,14 @@ func galerie(response http.ResponseWriter, request *http.Request) {
         names_files,
         links,
         true,
-        "",
+        "flou",
     }
         
     
     //colors := []string{"#27bfe7","#5227e7","#c927e7","#f16bcd","#e71e50","#e78027","#e7bd27","#27e763","#4baf6b"}
     t := template.New("Label de ma template")
     
-    t = template.Must(t.ParseFiles("pages/template.html", "pages/galerie.html"))
+    t = template.Must(t.ParseFiles("pages/template.html", "pages/galerie.html","pages/header-menu.html"))
     err := t.ExecuteTemplate(response, "page", data)
  
     if err != nil {
@@ -120,7 +127,14 @@ func galerie(response http.ResponseWriter, request *http.Request) {
 
 func detailGalerie(response http.ResponseWriter, request *http.Request){
     vars := mux.Vars(request)
-    files, _ := filepath.Glob("static/galerie/"+vars["dossier"]+"/*");
+    path := "static/galerie/"+vars["dossier"];
+    files, _ := ioutil.ReadDir(path)
+    names_files := []string{}
+    for _, f := range files {
+            names_files = Extend(names_files,path+"/"+f.Name())            
+    }
+
+
     links := []Link{
         Link{
             Image:  "/static/images/retour.svg",
@@ -144,7 +158,7 @@ func detailGalerie(response http.ResponseWriter, request *http.Request){
         Nav bool
         Content_id string
     } {
-        files,
+        names_files,
         vars["dossier"],
         links,
         true,
@@ -152,7 +166,7 @@ func detailGalerie(response http.ResponseWriter, request *http.Request){
     }
 
     t := template.New("Label de ma template")
-    t = template.Must(t.ParseFiles("pages/template.html", "pages/detailGalerie.html"))
+    t = template.Must(t.ParseFiles("pages/template.html", "pages/detailGalerie.html","pages/header-menu.html"))
     err := t.ExecuteTemplate(response, "page", data)
     
     if err != nil {
@@ -162,7 +176,12 @@ func detailGalerie(response http.ResponseWriter, request *http.Request){
 
 func index(response http.ResponseWriter, request *http.Request) {
 
-    files, _ := filepath.Glob("static/galerie/top/*");
+    //files, _ := filepath.Glob("static/galerie/top/*");
+    files, _ := ioutil.ReadDir("./static/galerie/top")
+    names_files := []string{}
+    for _, f := range files {
+            names_files = Extend(names_files,"/static/galerie/top/"+f.Name())            
+    }
     t := template.New("Label de ma template")
 
     data := struct {
@@ -171,13 +190,13 @@ func index(response http.ResponseWriter, request *http.Request) {
         Nav bool
         Content_id string
     } {
-        files,
+        names_files,
         []Link{},
         false,
-        "",
+        "index",
     }
     
-    t = template.Must(t.ParseFiles("pages/template.html", "pages/index.html"))
+    t = template.Must(t.ParseFiles("pages/template.html", "pages/index.html","pages/header-title.html"))
     err := t.ExecuteTemplate(response, "page", data)
  
     if err != nil {
@@ -185,3 +204,34 @@ func index(response http.ResponseWriter, request *http.Request) {
     }
 }
 
+
+func login(response http.ResponseWriter, request *http.Request) {
+    //name := request.FormValue("login")
+    //pass := request.FormValue("password")
+    redirectTarget := "/"
+   
+        resp, err := http.PostForm( "http://localhost:8080/api/v1/users",
+                                    url.Values{ "name": {"toto"}, 
+                                                "surname": {"titi"},
+                                                "password":{"123456789123"},
+                                                "password_confirmation":{"1234567891"},
+                                                "pseudo":{"toto"}})
+        if err != nil {
+	        log.Fatalf("Template execution: %s", err)
+        }
+        defer resp.Body.Close()
+        body, err := ioutil.ReadAll(resp.Body)
+        log.Fatalf("Template execution: %s", body)
+        
+        
+        
+        //setSession(name, response)
+        redirectTarget = "/galerie"
+    
+    http.Redirect(response, request, redirectTarget, 302)
+}
+ 
+func logoutHandler(response http.ResponseWriter, request *http.Request) {
+    //clearSession(response)
+    http.Redirect(response, request, "/", 302)
+}

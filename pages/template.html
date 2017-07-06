@@ -17,21 +17,14 @@
 
   <body>
     
+    
+    {{template "header" .}}
+    
     <div id="all-content" class="{{.Content_id}}">
-    <h1><strong>Zosio</strong>.Weloveminitel.eu</h1>
-    {{ template "content" .}}
+    
+      {{ template "content" .}}
     </div>
-    {{ if .Nav }}
-    <footer>
-      <nav>
-        {{range .Links}}
-          <a href="{{.Link}}">
-            <img src="{{.Image}}" id="retour"/>
-          </a>
-        {{ end }}
-      </nav>
-    </footer>
-    {{ end }}
+  
 
   </body>
 

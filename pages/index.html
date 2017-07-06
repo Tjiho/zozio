@@ -1,19 +1,7 @@
 {{ define "content" }}
 
-<div id="content">
-    <header>
-    
-    </header>
-        
-        <div id="slider">
-            {{range .Files}}
-                <img src="{{.}}"/>
-            {{end}}
-        </div>
-    
-</div>
-
 <aside id="connexion">
+    <h2>Login</h2>
     <label for="login">Login</label>
     <input type="text" id="login"/>
     <label for="password">Password</label>
@@ -21,11 +9,15 @@
     <button>Se connecter</button>
     <a href="/galerie.html"><button>Entrer anonymement</button></a>
 </aside>
+<article class="bienvenue-home">
+    <h2>Sauvegardez vos photos</h2>
+    Bienvenue sur Zozios, un site web pour visionner et partager (ou pas) vos albums photos
+</article>
 
 <script>
-    var ele = document.getElementById("slider");//on selectionne l'element qui contient les images 
-    slider = new Nounours(ele,3000);//on creer le slider
-    slider.reset();//on le reset
+    //var ele = document.getElementById("slider");//on selectionne l'element qui contient les images 
+    //slider = new Nounours(ele,3000);//on creer le slider
+    //slider.reset();//on le reset
 </script>
 
 {{ end }}

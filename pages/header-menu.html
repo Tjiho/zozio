@@ -1,0 +1,12 @@
+
+{{ define "header" }}
+<header id="buttonBar">
+    <nav>
+        {{range .Links}}
+        <a href="{{.Link}}">
+            <img src="{{.Image}}" id="retour"/>
+        </a>
+        {{ end }}
+    </nav>
+</header>
+{{ end }}
