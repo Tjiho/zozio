@@ -32,7 +32,7 @@ body
 
 html
 {
-    background-image: url("/static/images/fond-flou-6.jpg");
+    background-image: url("/static/images/fond-Flou-6.jpg");
     background-size: cover;
 }
 
@@ -82,10 +82,14 @@ h2
     flex: 1;
 }
 
+#all-content.index
+{
+    display: flex;
+}
 
 #buttonBar
 {
-    margin: auto;
+    margin: auto;   
     margin-top: 10px;
     padding: 5px;
     background-color: rgba(0,100,0,0.5);
@@ -118,10 +122,8 @@ h2
 {
      width: calc(50% - 40px);
     margin-left: 20px;
-    height: calc(100% + 10px);
+    margin: -20px 20px -20px 20px;
     background-color: white;
-    position: relative;
-    top: -20px;
     padding: 20px;
     width: 400px;
     box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
