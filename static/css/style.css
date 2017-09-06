@@ -18,21 +18,28 @@ html,body
     margin: 0;
     padding: 0;
     height: 100%;
-    width: 100%;
+    
 }
 
-
+html
+{
+    background-color: rgba(255,255,255,0.2);
+}
 
 body
 {
     position: relative;
     display: flex;
     flex-direction: column;
+    max-width: 1200px;
+    margin: auto;
+    align-items: stretch;
+    
 }
 
 html
 {
-    background-image: url("/static/images/fond-Flou-6.jpg");
+    background-image: url("/static/images/fond-mini.jpg");
     background-size: cover;
 }
 
@@ -41,6 +48,11 @@ header
 {
     flex:0;
     margin-bottom: 20px !important;
+}
+
+a
+{
+    text-decoration: none;
 }
 
 h1
@@ -72,29 +84,28 @@ h2
 
 #all-content
 {
-    box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
-    background-color: rgba(250,250,210,0.5);
-    width: 90%;
-    margin: auto;
-    margin-bottom: 80px;    
+        
     position: relative;    
     z-index: 2;    
     flex: 1;
+    margin: auto;
 }
 
 #all-content.index
 {
     display: flex;
+    box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
+    background-color: rgba(230,250,160,0.5);
+    width: 90%;    
+    margin-bottom: 80px;
 }
 
 #buttonBar
 {
-    margin: auto;   
-    margin-top: 10px;
+ 
+    margin-top: 30px;
     padding: 5px;
-    background-color: rgba(0,100,0,0.5);
-    width: 57%;
-    border-radius: 50px;
+    background-color: rgba(80,80,80,0.8);    
     padding-left: 30;
     box-shadow: 1px 1px 20px rgba(0,0,0,0.3);
     z-index: 1;
@@ -115,6 +126,7 @@ h2
     height: 40px;
 }
 
+
 /*-- -- -- -- -- -- landing page -- -- -- -- -- --*/
 
 
@@ -129,6 +141,7 @@ h2
     box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
     display: inline-block;
     vertical-align: top;
+    background-color: cornsilk;
 
 }
 
@@ -141,6 +154,7 @@ h2
 }
 #connexion input
 {
+    background-color: transparent;
     border:none;
     border-bottom: 1px solid;
     display: block;
@@ -188,55 +202,69 @@ h2
 }
 
 
-/**********************************************************************************/
+/********** galeries *******/
+
+#all-content.galeries
+{
+   text-align: center; 
+   width: 100%;
+   
+}
 
 
+.galeries #fichiers
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    flex-wrap: wrap;
 
+}
 
 #fichiers .dossier,#fichiers .ajout
 {
     width: 200px;
-    height: 200px;
-    
-    display: inline-block;
-    margin: 50px;
+    height: 200px;    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     vertical-align: middle;
     opacity: 0.8; 
     box-shadow: 1px 1px 20px rgba(0,0,0,0.5);
+    margin-bottom: 40px;
 }
 
-#fichiers.details
-{
-    margin: 10px;
-}
-
-#fichiers .image
-{
-    width: 200px;
-    height: 130px;
-    margin: 10px;
-    display: inline-block;
-    box-shadow: none;
-    margin-top: 30px;
-    border-radius: 5px;
-    box-shadow: 1px 5px 10px rgba(0,0,0,0.8);;
-}
-
-#fichiers .fichier  
-{
-    max-height: 200px;
-    max-width: 200px;
-    margin: 20px;
-}
-
-#fichiers .fichier:hover
+#fichiers .dossier:hover,#fichiers .ajout:hover
 {
     border: 3px solid rgba(255, 0, 255, 0.9);
-    margin: 17px;
+    width: 194px;
+    height: 194px;
     opacity: 1;
 }
 
+#fichiers .dossier h3
+{    
+    font-family: regular;    
+    margin: 0;
+    padding: 0;
+    font-size: 1.8em;
+    text-align: center;
+    width: 100%;
+    border:none;
+    text-decoration: none;
+}
 
+
+#fichiers .ajout img
+{
+    width: 50%;
+    height: 50%;
+    padding: 20%;
+    margin: 0px;
+    padding: 25%;
+
+}
 
 #fichiers .dossier, #fichiers .fichier, #fichiers .image
 {
@@ -250,34 +278,102 @@ h2
     background-size: cover;
 }
 
-#fichiers .dossier:hover,#fichiers .ajout:hover
+
+/**********************************************************************************/
+
+
+#all-content.photos
+{
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+#fichiers .image_conteneur
+{
+    display: inline-block;    
+    
+
+}
+
+#fichiers .image_background
+{
+    background-color: white;
+}
+
+#fichiers .image
+{
+    width: 220px;
+    height: 165px;
+    display: inline-block;
+    box-shadow: none;
+    box-shadow: 1px 5px 10px rgba(0,0,0,0.3);
+    margin:2px;
+}
+
+#fichiers .fichier  
+{
+    max-height: 200px;
+    max-width: 200px;
+    margin: 20px;
+}
+
+#fichiers .fichier:hover
 {
     border: 3px solid rgba(255, 0, 255, 0.9);
-    margin: 47px;
+    position: relative;
+    left:-20px;
     opacity: 1;
 }
-
-#fichiers .dossier h3
+#fichiers .action_bar
 {
-    position: absolute;
-    font-family: regular;
-    bottom: 80px;
-    /*border-top: 1px solid black;*/
-    margin: 0;
-    padding: 0;
-    font-size: 1.8em;
-    text-align: center;
-    width: 100%;
+    margin: 10px 0px;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+}
+
+#fichiers .action_bar .action
+{
+    /*background-color: white;*/
+    height: 40px;
+    width: 40px;
+    /*box-shadow: 1px 5px 10px rgba(0,0,0,0.3);*/
+    display: inline-block;
 
 }
 
-
-#fichiers .ajout img
+#fichiers .action_bar img
 {
-    width: 60%;
-    height: 60%;
-    padding: 20%;
-    margin: 0px;
-    padding: 20%;
-
+    max-width: 100%;
+    max-height: 100%;
+    padding: 3px;
 }
+
+
+/******************************/
+/******************************/
+/******************************/
+
+.categories .stat
+{
+    height: 300px;
+    width: 625px;
+    display: inline-block;
+    background-color: rgba(100,100,100,0.1);
+    margin: 10px;
+}
+
+.categories .tile
+{
+    height: 300px;
+    width: 300px;
+    background-color: black;
+    display: inline-block;
+    margin: 10px;
+    opacity: 0.8;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+}
+

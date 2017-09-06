@@ -1,10 +1,20 @@
 {{ define "content" }}
 <nav>
-    <h2>{{.Title}}</h2>
+    <!--<h2>{{.Title}}</h2>-->
 </nav>
 <section id="fichiers" class="details">
     {{range .Files}}
-                <div class="image" style="background-image:url('/{{.}}');"></div>
+            <div class="image_conteneur">
+                <div class="image_background">
+                    <div class="image" style="background-image:url('/{{.}}');"></div>
+                    
+                </div>
+                <div class="action_bar">
+                    <span class="action"><img src="/static/images/download.svg"></span>
+                    <span class="action"></span>
+                    <span class="action"></span>
+                </div>
+            </div>
                 <!-- <img src="/{{.}}" class="fichier"/> -->
     {{end}}
 </section>
