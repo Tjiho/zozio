@@ -86,12 +86,14 @@ function next(i)
             pop.getElementsByClassName("after")[0].onclick = null;
             loadNext(i+1);
         }
-
-        if(suivant.previousElementSibling != null)
+        else
         {
-            pop.getElementsByClassName("before")[0].src = "/static/images/arrow-left.svg";
-            pop.getElementsByClassName("before")[0].onclick = function(){ previous(i) };
+            pop.getElementsByClassName("after")[0].onclick = function(){ next(i+1) };
         }
+        
+        pop.getElementsByClassName("before")[0].src = "/static/images/arrow-left.svg";
+        pop.getElementsByClassName("before")[0].onclick = function(){ previous(i+1) };
+        
     }
 }
 
@@ -110,10 +112,13 @@ function previous(i)
             pop.getElementsByClassName("before")[0].onclick = null;
             loadPrevious(i-1,precedent)
         }
-        if(precedent.nextElementSibling != null)
+        else
         {
-            pop.getElementsByClassName("after")[0].src = "/static/images/arrow-right.svg";
-            pop.getElementsByClassName("after")[0].onclick = function(){ next(i) };
+            pop.getElementsByClassName("before")[0].onclick = function(){ previous(i-1) };
         }
+        
+        pop.getElementsByClassName("after")[0].src = "/static/images/arrow-right.svg";
+        pop.getElementsByClassName("after")[0].onclick = function(){ next(i-1) };
+        
     }
 }

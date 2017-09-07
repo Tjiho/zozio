@@ -28,7 +28,7 @@ func main() {
 	//liste des images pour le slider
 	//files, _ := filepath.Glob("static/galerie/top");
 
-	router.HandleFunc("/", categorie)
+	router.HandleFunc("/", index)
 	router.HandleFunc("/index.html", index)
 	router.HandleFunc("/galerie.html", galerie)
 	router.HandleFunc("/galerie/{dossier}.html", detailGalerie)
