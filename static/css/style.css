@@ -28,7 +28,7 @@ html
 
 body
 {
-    position: relative;
+    /*position: relative;*/
     display: flex;
     flex-direction: column;
     max-width: 1200px;
@@ -39,8 +39,9 @@ body
 
 html
 {
-    background-image: url("/static/images/fond-mini.jpg");
+    background-image: url("/static/images/winter.jpg");
     background-size: cover;
+    background-attachment: fixed;
 }
 
 
@@ -91,14 +92,7 @@ h2
     margin: auto;
 }
 
-#all-content.index
-{
-    display: flex;
-    box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
-    background-color: rgba(230,250,160,0.5);
-    width: 90%;    
-    margin-bottom: 80px;
-}
+
 
 #buttonBar
 {
@@ -129,6 +123,14 @@ h2
 
 /*-- -- -- -- -- -- landing page -- -- -- -- -- --*/
 
+#all-content.index
+{
+    display: flex;
+    box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
+    background-color:  rgba(245, 160, 250, 0.16);
+    width: 90%;    
+    margin-bottom: 80px;
+}
 
 #connexion
 {
@@ -137,11 +139,11 @@ h2
     margin: -20px 20px -20px 20px;
     background-color: white;
     padding: 20px;
-    width: 400px;
+    width: 250px;
     box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
     display: inline-block;
     vertical-align: top;
-    background-color: cornsilk;
+    
 
 }
 
@@ -204,19 +206,17 @@ h2
 
 /********** galeries *******/
 
-#all-content.galeries
+#all-content
 {
-   text-align: center; 
-   width: 100%;
-   
+  width: 100%;  
 }
 
 
-.galeries #fichiers
+#fichiers
 {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 10px;
     flex-wrap: wrap;
 
@@ -232,6 +232,7 @@ h2
     vertical-align: middle;
     opacity: 0.8; 
     box-shadow: 1px 1px 20px rgba(0,0,0,0.5);
+    margin: 0 5px;
     margin-bottom: 40px;
 }
 
@@ -280,15 +281,6 @@ h2
 
 
 /**********************************************************************************/
-
-
-#all-content.photos
-{
-    width: 1200px;
-    display: flex;
-    justify-content: space-between;
-   
-}
 
 #fichiers .image_conteneur
 {
@@ -377,3 +369,81 @@ h2
     box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
 }
 
+/*------------------------------------------*/
+
+#pop
+{
+    position: fixed;
+    top:0;
+    left: 0;
+    background-color: rgba(0,0,0,0.3);
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+#pop .container_all
+{
+    align-self: center;
+}
+
+#pop .before,#pop .after
+{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 20px;
+    z-index: 12;
+}
+
+#pop .before img,#pop .after img
+{
+    width: 100%;
+}
+
+#pop .quit
+{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top:20px;
+    left: 20px;
+}
+
+#pop .images
+{
+    display: inline-block;
+    max-width: 1000px;
+    width: calc( 100% - 300px);
+}
+
+#pop .images img.visible
+{
+    display: inline-block;
+}
+
+#pop .images img
+{
+    padding: 10px 0px;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+    display: none;
+}
+
+@media only screen and (max-width: 1200px) {
+    #buttonBar
+    {
+        margin-top: 0px;
+    }
+
+    #all-content
+    {
+        margin: 0 25px;
+        width: calc(100% - 50px) !important;
+    }
+}
