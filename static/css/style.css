@@ -154,7 +154,7 @@ h2
     display: block;
     text-align: left;
 }
-#connexion input
+#connexion input[type=text],#connexion input[type=password]
 {
     background-color: transparent;
     border:none;
@@ -164,7 +164,7 @@ h2
     width: 100%;
 }
 
-#connexion button
+#connexion input[type=submit], #connexion button
 {
     display: block;
     height: 30px;

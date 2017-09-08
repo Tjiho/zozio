@@ -1,14 +1,14 @@
 {{ define "content" }}
 
-<aside id="connexion">
+<form method="post" action="/login.html" id="connexion" >
     <h2>Login</h2>
     <label for="login">Login</label>
     <input type="text" id="login"/>
     <label for="password">Password</label>
     <input type="password" id="password"/>
-    <button>Se connecter</button>
+    <input type="submit" value="Se connecter"/>
     <a href="/galerie.html"><button>Entrer anonymement</button></a>
-</aside>
+</form>
 <article class="bienvenue-home">
     <h2>Sauvegardez vos photos</h2>
     Bienvenue sur Zozios, un site web pour visionner et partager (ou pas) vos albums photos
