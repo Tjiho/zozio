@@ -477,6 +477,28 @@ h2 strong
         height: 110px;
     }
 
+    /* list galerie*/
+
+    #fichiers .dossier, #fichiers .ajout
+    {
+        width: 150px;
+        height: 150px;
+    }
+
+    #fichiers .dossier h3, #fichiers .ajout h3
+    {
+        font-size: 1.6em;
+    }
+
+    #fichiers .dossier:hover,#fichiers .ajout:hover
+    {
+        border: 3px solid rgba(255, 0, 255, 0.9);
+        width: 144px;
+        height: 144px;
+        opacity: 1;
+    }
+
+    /* galerie */
     #pop .images img
     {
         width: 100vw;
