@@ -11,12 +11,9 @@ import (
 	"github.com/nfnt/resize"
 )
 
-func miniature(response http.ResponseWriter, request *http.Request) {
-
-	vars := mux.Vars(request)
-	pathMinDir := "static/galerie/" + vars["dossier"] + "/min/"
-	path := "static/galerie/" + vars["dossier"] + "/" + vars["file"]
-	pathMinFile := pathMinDir + vars["file"]
+func createMiniature(dossier string,fileName string,pathMinDir string,size uint,response http.ResponseWriter, request *http.Request) {
+	path := "static/galerie/" + dossier + "/" + fileName
+	pathMinFile := pathMinDir + fileName
 	ok := true
 
 	//get image
@@ -64,7 +61,7 @@ func miniature(response http.ResponseWriter, request *http.Request) {
 				file.Close()
 
 				// resize
-				m := resize.Thumbnail(300, 300, img, resize.Lanczos3)
+				m := resize.Thumbnail(size, size, img, resize.Lanczos3)
 
 				//create new image
 				out, err := os.Create(pathMinFile)
@@ -81,3 +78,24 @@ func miniature(response http.ResponseWriter, request *http.Request) {
 	}
 
 }
+
+
+func miniature(response http.ResponseWriter, request *http.Request) {
+
+	vars := mux.Vars(request)
+	pathMinDir := "static/galerie/" + vars["dossier"] + "/min/"
+
+	createMiniature(vars["dossier"],vars["file"],pathMinDir,300,response,request)
+
+}
+
+
+func bigMiniature(response http.ResponseWriter, request *http.Request) {
+	
+		vars := mux.Vars(request)
+		pathMinDir := "static/galerie/" + vars["dossier"] + "/bigMin/"
+	
+		createMiniature(vars["dossier"],vars["file"],pathMinDir,900,response,request)
+	
+}
+	

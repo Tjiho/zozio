@@ -29,7 +29,7 @@ function slider(image)
         loadNext(index);
         loadPrevious(index,img_dom);
     }
-    img_dom.src = "/static/galerie/"+image;
+    img_dom.src = image;
 
 }
 
@@ -47,7 +47,7 @@ function loadNext(i)
             pop.getElementsByClassName("after")[0].onclick = function(){ next(i) };
             console.log("ok next!");
         }
-        img_dom.src = "/static/galerie/"+list_files[i+1];
+        img_dom.src = list_files[i+1];
         images.appendChild(img_dom);
     }
 }
@@ -66,7 +66,7 @@ function loadPrevious(i,image)
             pop.getElementsByClassName("before")[0].onclick = function(){ previous(i) };
             console.log("ok before!");
         }
-        img_dom.src = "/static/galerie/"+list_files[i-1];
+        img_dom.src = list_files[i-1];
         images.insertBefore(img_dom,image);
     }
 }

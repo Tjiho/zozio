@@ -6,7 +6,7 @@
     {{range .Files}}
             <div class="image_conteneur">
                 <div class="image_background">
-                    <div class="image" style="background-image:url('/miniature/{{.}}');" onclick="slider('{{.}}')"></div>
+                    <div class="image" style="background-image:url('/miniature/{{.}}');" onclick="slider('/bigMiniature/{{.}}')"></div>
                     
                 </div>
                 <div class="action_bar">
@@ -21,7 +21,7 @@
         //we create a list with all files
         list_files = new Array();
         {{range .Files}}
-            list_files.push('{{.}}')
+            list_files.push('/bigMiniature/{{.}}')
         {{end}}
     </script>
 </section>
