@@ -51,6 +51,12 @@ header
     margin-bottom: 20px !important;
 }
 
+.navbar-fixed
+{
+    z-index: 5 !important;
+
+}
+
 a
 {
     text-decoration: none;
@@ -81,6 +87,14 @@ h2
     
     font-family: regular;
     
+}
+
+h2 strong
+{
+    background-color: black;
+    color:white;
+    padding: 8px;
+    box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
 }
 
 #all-content
@@ -188,7 +202,7 @@ h2
     display: inline-block;
 }
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 800px) {
 
     .bienvenue-home
     {
@@ -379,7 +393,7 @@ h2
     background-color: rgba(0,0,0,0.6);
     width: 100vw;
     height: 100vh;
-    z-index: 10;
+    z-index: 200;
     display: flex;
     justify-content: center;
     display: none;
