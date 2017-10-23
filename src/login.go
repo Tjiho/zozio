@@ -8,7 +8,6 @@ import (
 func login(response http.ResponseWriter, request *http.Request) {
 	name := request.FormValue("login")
 	//pass := request.FormValue("password")
-	redirectTarget := "/"
 	/*
 	resp, err := http.PostForm("http://localhost:8080/api/v1/users",
 		url.Values{"name": {"toto"},
@@ -26,7 +25,7 @@ func login(response http.ResponseWriter, request *http.Request) {
 	//setSession(name, response)*/
 
 
-	redirectTarget = "/galerie.html"
+	redirectTarget := "/galerie.html"
 	
 	session, err := store.Get(request, "zozio")
     if err != nil {

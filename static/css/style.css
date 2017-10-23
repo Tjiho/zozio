@@ -89,6 +89,14 @@ h2
     
 }
 
+h2 strong
+{
+    background-color: black;
+    color:white;
+    padding: 8px;
+    box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
+}
+
 #all-content
 {
         
@@ -194,7 +202,7 @@ h2
     display: inline-block;
 }
 
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 800px) {
 
     .bienvenue-home
     {
@@ -206,6 +214,10 @@ h2
         text-align: center;
         background-color: transparent !important;
         box-shadow: none;
+    }
+    h1
+    {
+        font-size: 9vw;
     }
 }
 
@@ -299,7 +311,6 @@ h2
 {
     background-color: white;
     display: flex;
-    justify-content: center;
 }
 
 #fichiers .image
@@ -443,7 +454,8 @@ h2
     display: none;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1200px) 
+{
     #buttonBar
     {
         margin-top: 0px;
@@ -454,4 +466,49 @@ h2
         margin: 0 25px;
         width: calc(100% - 50px) !important;
     }
+   
 }
+
+@media only screen and (max-width: 600px)
+{
+    #fichiers .image 
+    {
+        width: 165px;
+        height: 110px;
+    }
+
+    #pop .images img
+    {
+        width: 100vw;
+    }
+
+    #pop
+    {
+        background-color: rgba(0,0,0,1);
+    }
+
+    #pop .quit
+    {
+        filter:invert(100%);
+    }
+
+    #pop .before
+    {
+        position: absolute;
+        bottom: 20px;
+        left: calc(50vw - 140px);
+        filter:invert(100%);
+        max-width: calc(50vw - 30px);
+    }
+
+    #pop .after
+    {
+        position: absolute;
+        bottom: 20px;
+        right: calc(50vw - 140px);
+        filter:invert(100%);
+        max-width: calc(50vw - 30px);
+    }
+}
+
+
