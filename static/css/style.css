@@ -459,42 +459,54 @@ h2 strong
     #buttonBar
     {
         margin-top: 0px;
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100vw;
+	z-index:3;
     }
 
     #all-content
     {
-        margin: 0 25px;
-        width: calc(100% - 50px) !important;
+        
+	margin: 0 25px;
+        padding-top:60px;
+	width: calc(100% - 50px) !important;
     }
-   
+    #all-content.index
+    {
+	padding-top:0;
+    } 
 }
 
 @media only screen and (max-width: 600px)
 {
     #fichiers .image 
     {
-        width: 165px;
-        height: 110px;
+        width: 130px;
+        height: 87px;
     }
 
     /* list galerie*/
 
     #fichiers .dossier, #fichiers .ajout
     {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+	height: 120px;
+	font-size: 15px;
+
     }
 
     #fichiers .dossier h3, #fichiers .ajout h3
     {
-        font-size: 1.6em;
+        font-size: 1.4em;
     }
 
     #fichiers .dossier:hover,#fichiers .ajout:hover
     {
         border: 3px solid rgba(255, 0, 255, 0.9);
-        width: 144px;
-        height: 144px;
+        width: 114px;
+        height: 114px;
         opacity: 1;
     }
 

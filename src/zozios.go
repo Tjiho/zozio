@@ -30,7 +30,7 @@ func main() {
 	s1 := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
 	router.PathPrefix("/").Handler(s1)
 	http.Handle("/", router)
-	http.ListenAndServe(":12345", nil)
+	http.ListenAndServe("127.0.0.1:8764", nil)
 }
 
 func Extend(slice []string, element string) []string {
