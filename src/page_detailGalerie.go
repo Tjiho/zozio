@@ -2,30 +2,67 @@ package main
 
 import (
 	"net/http"
+	"fmt"
 	//"net/url"
-
+	//"time"
 	"github.com/gorilla/mux"
 	//"github.com/gorilla/securecookie"
 	"html/template"
 	"io/ioutil"
 	"log"
 	"path/filepath"
+	"github.com/xiam/exif"
 )
+
+func sortImagesByDate(files []string,len int) []string{
+	for i:= len - 1; i > 0;i-- {
+		for j:= 0;j < i;j++ {
+			data1, err1 := exif.Read("static/galerie/"+files[j])
+			data2, err2 := exif.Read("static/galerie/"+files[j+1])
+			
+			if err1 == nil {
+				if err2 == nil {
+					//date1 = 		
+					if(data2.Tags["Date and Time (Original)"] < data1.Tags["Date and Time (Original)"]) {
+						//fmt.Printf("\n")
+						//fmt.Printf(data2.Tags["Date and Time (Original)"] +" < ")
+						//fmt.Printf(data1.Tags["Date and Time (Original)"])
+						//fmt.Printf(" : ok")
+						a := files[j]
+						files[j] = files[j+1]
+						files[j+1] = a
+					}
+				} else {
+					fmt.Printf("\nno date - "+files[j+1])
+				}
+			} else {
+				a := files[j]
+				files[j] = files[j+1]
+				files[j+1] = a
+			}
+		}
+	}
+	return files
+}
+
 
 func detailGalerie(response http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)
 	path := "static/galerie/" + vars["dossier"]
 	files, _ := ioutil.ReadDir(path)
 	names_files := []string{}
-
+	i := 0
 	//list files
 	for _, f := range files {
 		var extension = filepath.Ext(f.Name())
+
 		if !f.IsDir() && (extension == ".jpg" || extension == ".JPG") {
 			names_files = Extend(names_files, vars["dossier"]+"/"+f.Name())
+			i = i+1
 		}
 
 	}
+	names_files = sortImagesByDate(names_files,i)
 
 	//create menu
 	links := []Link{
