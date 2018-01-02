@@ -14,12 +14,38 @@ import (
 	"github.com/xiam/exif"
 )
 
+
+func getExifDate(file string) string{
+	data, err := exif.Read("static/galerie/"+file)
+    if err != nil {
+        return "2099:12:30 23:50:50"
+    } else {
+        return data.Tags["Date and Time (Original)"]
+    }
+}
+
+func sortImagesByDateInsertion(files []string,len int) []string{
+	j := 0
+	x := ""
+	y := ""
+	for i:= 1; i < len - 1;i++ {
+	    x = getExifDate(files[i])
+		y = files[i]
+		j = i
+        for j > 0 &&  getExifDate(files[j-1]) > x {
+            files[j] = files[j - 1]
+            j = j-1
+        }
+		files[j] = y 
+	}
+	return files
+}
+
 func sortImagesByDate(files []string,len int) []string{
 	for i:= len - 1; i > 0;i-- {
 		for j:= 0;j < i;j++ {
 			data1, err1 := exif.Read("static/galerie/"+files[j])
 			data2, err2 := exif.Read("static/galerie/"+files[j+1])
-			
 			if err1 == nil {
 				if err2 == nil {
 					//date1 = 		
@@ -62,7 +88,7 @@ func detailGalerie(response http.ResponseWriter, request *http.Request) {
 		}
 
 	}
-	names_files = sortImagesByDate(names_files,i)
+	names_files = sortImagesByDateInsertion(names_files,i)
 
 	//create menu
 	links := []Link{
