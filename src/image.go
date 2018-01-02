@@ -9,6 +9,8 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/nfnt/resize"
+	"github.com/xiam/exif"
+	"github.com/disintegration/imaging"
 )
 
 func createMiniature(dossier string,fileName string,pathMinDir string,size uint,response http.ResponseWriter, request *http.Request) {
@@ -51,7 +53,7 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 		_, err := os.Stat(pathMinFile)
 		if err != nil {
 			if os.IsNotExist(err) {
-				print("go resize : " + path)
+				print("go resize : " + path + "\n")
 
 				// decode jpeg into image.Image
 				img, err := jpeg.Decode(file)
@@ -62,6 +64,24 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 
 				// resize
 				m := resize.Thumbnail(size, size, img, resize.Lanczos3)
+
+				data, err := exif.Read(path)
+				if err == nil {
+					fmt.Println(data.Tags["Orientation"])
+					if(data.Tags["Orientation"] == "Bottom-right"){
+						m = imaging.Rotate180(m)
+					}
+					if(data.Tags["Orientation"] == "Right-top"){
+						m = imaging.Rotate270(m)
+					}
+					if(data.Tags["Orientation"] == "Left-bottom"){
+						m = imaging.Rotate90(m)
+					}
+
+
+
+					fmt.Println()
+				}
 
 				//create new image
 				out, err := os.Create(pathMinFile)
