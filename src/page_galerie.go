@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"log"
+	"os"
 )
 
 func galerie(response http.ResponseWriter, request *http.Request) {
@@ -35,7 +36,10 @@ func galerie(response http.ResponseWriter, request *http.Request) {
 	}
 
 	for _, f := range files {
-		names_files = Extend(names_files, f.Name())
+		if _, err := os.Stat("./static/galerie/"+f.Name()+"/private.txt");  os.IsNotExist(err) {
+			names_files = Extend(names_files, f.Name())
+		}
+		
 	}
 
 	data := struct {
