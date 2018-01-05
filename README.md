@@ -14,6 +14,13 @@ go build src/zozios.go src/image.go src/login.go src/page_detailGalerie.go src/p
 ./zozios.exe #windows
 ```
 
+Use
+===
+
+ * To create a galery, you need to create a folder in `static/galerie/<name galery>`
+ * If you want to set the galery private you have to create a file "private.txt" in the galery folder 
+ * Url to the galery is `<url website>/galerie/<name>.html `
+
 Previews
 ========
 
