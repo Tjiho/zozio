@@ -24,6 +24,7 @@ func main() {
 	router.HandleFunc("/index.html", index)
 	router.HandleFunc("/galerie.html", galerie)
 	router.HandleFunc("/galerie/{dossier}.html", detailGalerie)
+	router.HandleFunc("/random/{dossier}.html", randomImage)
 	router.HandleFunc("/login.html", login)
 	router.HandleFunc("/miniature/{dossier}/{file}", miniature)
 	router.HandleFunc("/bigMiniature/{dossier}/{file}", bigMiniature)
