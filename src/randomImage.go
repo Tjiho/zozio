@@ -30,6 +30,6 @@ func randomImage(response http.ResponseWriter, request *http.Request) {
 	source := rand.New(rand.NewSource(time.Now().UnixNano()))
 	
 	randomInt := source.Intn(i)
-
-	http.Redirect(response, request, "/static/galerie/"+names_files[randomInt], http.StatusTemporaryRedirect)
+	http.ServeFile(response,request,"static/galerie/"+names_files[randomInt])
+	//http.Redirect(response, request, "/static/galerie/"+names_files[randomInt], http.StatusTemporaryRedirect)
 }
