@@ -30,8 +30,11 @@ Use
 Previews
 ========
 
-![capture](static/readme/photos.png)
+![capture](static/readme/photos.jpg)
 
 ![capture](static/readme/albums.jpg)
 
 ![capture](static/readme/big_photo.jpg)
+
+![capture](static/readme/albums-tel.jpg)
+
