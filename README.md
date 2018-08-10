@@ -5,14 +5,19 @@ Website in golang to browse photos
 
 Install
 =======
+you need to install exif-dev with your package manager
 
 ```bash
-go build src/zozios.go src/image.go src/login.go src/page_detailGalerie.go src/page_galerie.go src/page_index.go
+go get github.com/xiam/exif github.com/nfnt/resize github.com/gorilla/sessions github.com/gorilla/mux github.com/disintegration/imaging
+
+go build src/zozios.go src/image.go src/login.go src/page_detailGalerie.go src/page_galerie.go src/page_index.go src/randomImage.go
 
 ./zozios #linux
 
 ./zozios.exe #windows
 ```
+
+open http://localhost:8764/
 
 Use
 ===
@@ -28,3 +33,5 @@ Previews
 ![capture](static/readme/photos.png)
 
 ![capture](static/readme/albums.jpg)
+
+![capture](static/readme/big_photo.jpg)
