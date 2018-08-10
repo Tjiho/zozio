@@ -21,7 +21,7 @@ func main() {
 	//files, _ := filepath.Glob("static/galerie/top");
 
 	router.HandleFunc("/", galerie)
-	router.HandleFunc("/index.html", index)
+	//router.HandleFunc("/index.html", index)
 	router.HandleFunc("/galerie.html", galerie)
 	router.HandleFunc("/galerie/{dossier}.html", detailGalerie)
 	router.HandleFunc("/random/{dossier}.jpg", randomImage)

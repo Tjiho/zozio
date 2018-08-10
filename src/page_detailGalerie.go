@@ -93,15 +93,7 @@ func detailGalerie(response http.ResponseWriter, request *http.Request) {
 	//create menu
 	links := []Link{
 		Link{
-			Image: "/static/images/retour.svg",
-			Link:  "/galerie.html",
-		},
-		Link{
 			Image: "/static/images/home.svg",
-			Link:  "/index.html",
-		},
-		Link{
-			Image: "/static/images/upload.svg",
 			Link:  "/index.html",
 		},
 	}

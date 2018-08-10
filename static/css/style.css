@@ -78,6 +78,17 @@ h1 strong
     color: rgba(255, 0, 255, 0.9);
 }
 
+header h1
+{
+    text-align: center;
+    margin: 0;
+    font-size: 35px;
+    font-family: regular;
+    float: left;
+    padding-right: 20px;
+    color:white;
+}
+
 h2
 {
     text-align: center;
@@ -127,6 +138,12 @@ input
     box-shadow: 1px 1px 20px rgba(0,0,0,0.3);
     z-index: 1;
     
+}
+
+#buttonBar nav
+{
+    float: right;
+    padding-right: 10px;
 }
 
 #buttonBar nav a

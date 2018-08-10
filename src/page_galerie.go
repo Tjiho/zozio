@@ -28,12 +28,7 @@ func galerie(response http.ResponseWriter, request *http.Request) {
 	files, _ := ioutil.ReadDir("./static/galerie")
 	names_files := []string{}
 
-	links := []Link{
-		Link{
-			Image: "/static/images/home.svg",
-			Link:  "/index.html",
-		},
-	}
+	links := []Link{}
 
 	for _, f := range files {
 		if _, err := os.Stat("./static/galerie/"+f.Name()+"/private.txt");  os.IsNotExist(err) {
@@ -44,11 +39,13 @@ func galerie(response http.ResponseWriter, request *http.Request) {
 
 	data := struct {
 		Files      []string
+		Title      string
 		Links      []Link
 		Nav        bool
 		Content_id string
 	}{
 		names_files,
+		"Les galeries",
 		links,
 		true,
 		"galeries",
