@@ -137,6 +137,7 @@ input
     padding-left: 30;
     box-shadow: 1px 1px 20px rgba(0,0,0,0.3);
     z-index: 1;
+    height:56px;
     
 }
 
@@ -500,13 +501,20 @@ input
 	z-index:3;
     }
 
+    #buttonBar nav
+    {
+        float: right;
+        padding-right: 25px;
+    }
+
     #all-content
     {
         
-	margin: 0 25px;
+	    margin: 0 25px;
         padding-top:60px;
-	width: calc(100% - 50px) !important;
+	    width: calc(100% - 50px) !important;
     }
+    
     #all-content.index
     {
 	padding-top:0;

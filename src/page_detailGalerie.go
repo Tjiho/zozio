@@ -94,7 +94,7 @@ func detailGalerie(response http.ResponseWriter, request *http.Request) {
 	links := []Link{
 		Link{
 			Image: "/static/images/home.svg",
-			Link:  "/index.html",
+			Link:  "/",
 		},
 	}
 
