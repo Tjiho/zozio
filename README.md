@@ -3,8 +3,15 @@ Zozio
 
 Website in golang to browse photos
 
-Install
-=======
+
+Install with Docker
+===================
+```bash
+docker-compose up
+```
+
+Install without Docker
+======================
 you need to install exif-dev with your package manager
 
 ```bash
