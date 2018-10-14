@@ -10,21 +10,6 @@ import (
 
 func galerie(response http.ResponseWriter, request *http.Request) {
 	
-	session, err := store.Get(request, "zozio")
-    if err != nil {
-        http.Error(response, err.Error(), http.StatusInternalServerError)
-        return
-    }
-	
-    isConnected, _ := session.Values["connected"].(bool)
-	
-	if(isConnected) {
-		print("ok")
-	} else {
-		print("non")
-	}
-	
-	
 	files, _ := ioutil.ReadDir("./static/galerie")
 	names_files := []string{}
 
@@ -55,7 +40,7 @@ func galerie(response http.ResponseWriter, request *http.Request) {
 	t := template.New("")
 
 	t = template.Must(t.ParseFiles("pages/template.html", "pages/galerie.html", "pages/header-menu.html"))
-	err = t.ExecuteTemplate(response, "page", data)
+	err := t.ExecuteTemplate(response, "page", data)
 
 	if err != nil {
 		log.Fatalf("Template execution: %s", err)
