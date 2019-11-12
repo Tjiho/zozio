@@ -18,7 +18,7 @@ function coloration()
         
         value = stringToInt(str) % 9;
         
-        ele.style.backgroundColor = color[value];
+        ele.style.borderColor = color[value];
     }
 }
 

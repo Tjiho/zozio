@@ -6,7 +6,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/static/css/style.css" />
-<meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <script src="/static/js/slider.js"></script>
     
     <title></title>
@@ -15,14 +15,15 @@
 
   <body>
     
-    
+    {{template "navbar" .}}
+    <main> 
     {{template "header" .}}
     
     <div id="all-content" class="{{.Content_id}}">
     
       {{ template "content" .}}
     </div>
-  
+  	</main>
     <div id="pop">
       <img class="quit" src="/static/images/cross.svg" onclick="cacheSlider()"/>
       <div class="container_all">

@@ -1,13 +1,24 @@
 
-{{ define "header" }}
-<header id="buttonBar">
-    <h1>{{.Title}}</h1>
-    <nav>
-        {{range .Links}}
+{{ define "navbar" }}
+<nav class="main-nav">
+<a href='/'>
+	<h1>Zozios !</h1>
+</a>
+<!-- 
+       {{range .Links}}
         <a href="{{.Link}}">
-            <img src="{{.Image}}" id="retour"/>
+           <img src="{{.Image}}" id="retour"/> 
+			{{.Link}}	
         </a>
         {{ end }}
+-->
+</nav>
+{{ end }}
+
+{{ define "header" }}
+<header id="buttonBar">
+    <h2>{{.Title}}</h2>
+    <nav>
     </nav>
 </header>
 {{ end }}

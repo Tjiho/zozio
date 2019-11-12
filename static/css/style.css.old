@@ -1,0 +1,590 @@
+@font-face 
+{
+	/*
+        Copyright (c) 2011, Pablo Impallari (www.impallari.com|impallari@gmail.com),
+        Copyright (c) 2011, Igino Marini. (www.ikern.com|mail@iginomarini.com),
+        with Reserved Font Name Kaushan Script.
+
+        This Font Software is licensed under the SIL Open Font License, Version 1.1.
+        This license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL
+    */
+    font-family: 'regular';
+	src: url("/static/fonts/KaushanScript-Regular.otf") format("opentype");
+}
+
+
+html,body
+{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    
+}
+
+html
+{
+    background-color: rgba(255,255,255,0.2);
+}
+
+body
+{
+    /*position: relative;*/
+    /*display: flex;*/
+    flex-direction: column;
+    max-width: 1200px;
+    margin: auto;
+    align-items: stretch;
+    
+}
+
+html
+{
+    background-image: url("/static/images/winter.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+header
+{
+    flex:0;
+    margin-bottom: 20px !important;
+}
+
+.navbar-fixed
+{
+    z-index: 5 !important;
+
+}
+
+a
+{
+    text-decoration: none;
+}
+
+h1
+{
+    text-align: center;
+    
+    
+    margin: auto;
+    font-size: 4em;
+    font-family: regular;
+    
+}
+
+h1 strong
+{
+    color: rgba(255, 0, 255, 0.9);
+}
+
+header h1
+{
+    text-align: center;
+    margin: 0;
+    font-size: 35px;
+    font-family: regular;
+    float: left;
+    padding-right: 20px;
+    color:white;
+}
+
+h2
+{
+    text-align: center;
+    font-size: 2em;
+    
+    margin: auto;
+    
+    font-family: regular;
+    
+}
+
+h2 strong
+{
+    background-color: black;
+    color:white;
+    padding: 8px;
+    box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
+}
+
+
+input
+{
+
+	border-radius:0px;
+	-webkit-appearance: none;
+}
+
+
+#all-content
+{
+        
+    position: relative;    
+    z-index: 2;    
+    flex: 1;
+    margin: auto;
+}
+
+
+
+#buttonBar
+{
+ 
+    margin-top: 30px;
+    padding: 5px;
+    background-color: rgba(80,80,80,0.8);    
+    padding-left: 30;
+    box-shadow: 1px 1px 20px rgba(0,0,0,0.3);
+    z-index: 1;
+    height:56px;
+    
+}
+
+#buttonBar nav
+{
+    float: right;
+    padding-right: 10px;
+}
+
+#buttonBar nav a
+{
+    border: 2px solid rgb(220,220,220);
+    height: 40px;
+    padding: 5px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#buttonBar nav a:hover
+{
+    background-color: rgba(255,255,255,0.3);
+}
+
+#buttonBar nav a img
+{
+    height: 40px;
+}
+
+
+/*-- -- -- -- -- -- landing page -- -- -- -- -- --*/
+
+#all-content.index
+{
+    display: flex;
+    box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
+    background-color:  rgba(245, 160, 250, 0.16);
+    width: 90%;    
+    /*margin-bottom: 80px;*/
+    height: calc(100% - 150px);
+}
+
+#connexion
+{
+     width: calc(50% - 40px);
+    margin-left: 20px;
+    margin: -20px 20px -20px 20px;
+    background-color: white;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 1px 1px 20px rgba(0,0,0,0.2);
+    display: inline-block;
+    vertical-align: top;
+    
+
+}
+
+#connexion label
+{
+    margin-top: 5px;
+    color: #aaa;
+    display: block;
+    text-align: left;
+}
+#connexion input[type=text],#connexion input[type=password]
+{
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid;
+    display: block;
+    height: 30px;
+    width: 100%;
+}
+
+#connexion input[type=submit], #connexion button
+{
+    display: block;
+    height: 30px;
+    margin-top: 10px;
+    width: 100%;
+    background-color: rgba(255, 0, 255, 0.9) !important;
+    border-radius:0px !important;
+    border: 0px solid black;
+    font-weight: 800;
+    color: white;
+    cursor: pointer;
+}
+
+#connexion a
+{
+    text-decoration: none;
+}
+
+.bienvenue-home
+{
+    width: calc(100% - 470px);
+    display: inline-block;
+}
+
+@media only screen and (max-width: 800px) {
+
+    .bienvenue-home
+    {
+        display: none;
+    }
+
+    #connexion-bloc
+    {
+        text-align: center;
+        background-color: transparent !important;
+        box-shadow: none;
+    }
+    h1
+    {
+        font-size: 9vw;
+    }
+}
+
+
+/********** galeries *******/
+
+#all-content
+{
+  width: 100%;  
+}
+
+
+#fichiers
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    flex-wrap: wrap;
+
+}
+
+#fichiers .dossier,#fichiers .ajout
+{
+    width: 200px;
+    height: 200px;    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    vertical-align: middle;
+    opacity: 0.8; 
+    box-shadow: 1px 1px 20px rgba(0,0,0,0.5);
+    margin: 0 5px;
+    margin-bottom: 40px;
+}
+
+#fichiers .dossier:hover,#fichiers .ajout:hover
+{
+    border: 3px solid rgba(255, 0, 255, 0.9);
+    width: 194px;
+    height: 194px;
+    opacity: 1;
+}
+
+#fichiers .dossier h3
+{    
+    font-family: regular;    
+    margin: 0;
+    padding: 0;
+    font-size: 1.8em;
+    text-align: center;
+    width: 100%;
+    border:none;
+    text-decoration: none;
+}
+
+
+#fichiers .ajout img
+{
+    width: 50%;
+    height: 50%;
+    padding: 20%;
+    margin: 0px;
+    padding: 25%;
+
+}
+
+#fichiers .dossier, #fichiers .fichier, #fichiers .image
+{
+    background-color: #fef9d1;
+    /*box-shadow: 2px 2px 4px #111;*/
+
+    position: relative;
+    cursor: pointer;
+    opacity: 0.8;
+    color:black;
+    background-size: cover;
+}
+
+
+/**********************************************************************************/
+
+#fichiers .image_conteneur
+{
+    display: inline-block;    
+    
+
+}
+
+#fichiers .image_background
+{
+    background-color: white;
+    display: flex;
+}
+
+#fichiers .image
+{
+    width: 220px;
+    height: 165px;
+    display: inline-block;
+    box-shadow: none;
+    box-shadow: 1px 5px 10px rgba(0,0,0,0.3);
+    margin:2px;
+}
+
+#fichiers .fichier  
+{
+    max-height: 200px;
+    max-width: 200px;
+    margin: 20px;
+}
+
+#fichiers .fichier:hover
+{
+    border: 3px solid rgba(255, 0, 255, 0.9);
+    position: relative;
+    left:-20px;
+    opacity: 1;
+}
+#fichiers .action_bar
+{
+    margin: 10px 0px;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-around;
+}
+
+#fichiers .action_bar .action
+{
+    /*background-color: white;*/
+    height: 40px;
+    width: 40px;
+    /*box-shadow: 1px 5px 10px rgba(0,0,0,0.3);*/
+    display: inline-block;
+
+}
+
+#fichiers .action_bar img
+{
+    max-width: 100%;
+    max-height: 100%;
+    padding: 3px;
+}
+
+
+/******************************/
+/******************************/
+/******************************/
+
+.categories .stat
+{
+    height: 300px;
+    width: 625px;
+    display: inline-block;
+    background-color: rgba(100,100,100,0.1);
+    margin: 10px;
+}
+
+.categories .tile
+{
+    height: 300px;
+    width: 300px;
+    background-color: black;
+    display: inline-block;
+    margin: 10px;
+    opacity: 0.8;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+}
+
+/*------------------------------------------*/
+
+#pop
+{
+    position: fixed;
+    top:0;
+    left: 0;
+    background-color: rgba(0,0,0,0.6);
+    width: 100vw;
+    height: 100vh;
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+#pop .container_all
+{
+    align-self: center;
+}
+
+#pop .before,#pop .after
+{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 20px;
+    z-index: 12;
+}
+
+#pop .before img,#pop .after img
+{
+    width: 100%;
+}
+
+#pop .quit
+{
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top:20px;
+    left: 20px;
+}
+
+#pop .images
+{
+    display: inline-block;
+    max-width: 1000px;
+    width: calc( 100% - 300px);
+}
+
+#pop .images img.visible
+{
+    display: inline-block;
+}
+
+#pop .images img
+{
+    padding: 10px 0px;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+    display: none;
+}
+
+@media only screen and (max-width: 1200px) 
+{
+    #buttonBar
+    {
+        margin-top: 0px;
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100vw;
+	z-index:3;
+    }
+
+    #buttonBar nav
+    {
+        float: right;
+        padding-right: 25px;
+    }
+
+    #all-content
+    {
+        
+	    margin: 0 25px;
+            padding-top:75px;
+	    width: calc(100% - 50px) !important;
+    }
+    
+    #all-content.index
+    {
+	padding-top:0;
+    } 
+}
+
+@media only screen and (max-width: 600px)
+{
+    #fichiers .image 
+    {
+        width: 130px;
+        height: 87px;
+    }
+
+    /* list galerie*/
+
+    #fichiers .dossier, #fichiers .ajout
+    {
+        width: 120px;
+	height: 120px;
+	font-size: 15px;
+
+    }
+
+    #fichiers .dossier h3, #fichiers .ajout h3
+    {
+        font-size: 1.4em;
+    }
+
+    #fichiers .dossier:hover,#fichiers .ajout:hover
+    {
+        border: 3px solid rgba(255, 0, 255, 0.9);
+        width: 114px;
+        height: 114px;
+        opacity: 1;
+    }
+
+    /* galerie */
+    #pop .images img
+    {
+        width: 100vw;
+    }
+
+    #pop
+    {
+        background-color: rgba(0,0,0,1);
+    }
+
+    #pop .quit
+    {
+        filter:invert(100%);
+    }
+
+    #pop .before
+    {
+        position: absolute;
+        bottom: 20px;
+        left: calc(50vw - 140px);
+        filter:invert(100%);
+        max-width: calc(50vw - 30px);
+    }
+
+    #pop .after
+    {
+        position: absolute;
+        bottom: 20px;
+        right: calc(50vw - 140px);
+        filter:invert(100%);
+        max-width: calc(50vw - 30px);
+    }
+}
+
+

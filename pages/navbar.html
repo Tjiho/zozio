@@ -1,0 +1,11 @@
+
+{{ define "navbar" }}
+<nav>
+	<h1>Zozios !</h1>
+        {{range .Links}}
+        <a href="{{.Link}}">
+           <!-- <img src="{{.Image}}" id="retour"/> -->
+        </a>
+        {{ end }}
+</nav>
+{{ end }}
