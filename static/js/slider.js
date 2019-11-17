@@ -12,9 +12,6 @@ function slider(image)
     var pop = document.getElementById("pop");
     pop.style.display = "flex";//display slider
 
-    pop.getElementsByClassName("after")[0].onclick = null;
-    pop.getElementsByClassName("before")[0].onclick = null;
-
     var images = pop.getElementsByClassName("images")[0];
     images.innerHTML = "";
 
@@ -35,16 +32,16 @@ function slider(image)
 function enableClickNext(index_image)
 {
     var pop = document.getElementById("pop");
-    pop.getElementsByClassName("after")[0].classList.remove("progress");
-    pop.getElementsByClassName("after")[0].onclick = function(){ next(index_image) };
+    pop.getElementsByClassName("next-img")[0].classList.remove("progress");
+    pop.getElementsByClassName("next-img")[0].onclick = function(){ next(index_image) };
 }
 
 // disable click for next img and set cursor as loading
 function disableClickNext()
 {
     var pop = document.getElementById("pop");
-    pop.getElementsByClassName("after")[0].classList.add("progress");
-    pop.getElementsByClassName("after")[0].onclick = null
+    pop.getElementsByClassName("next-img")[0].classList.add("progress");
+    pop.getElementsByClassName("next-img")[0].onclick = null
 }
 
 //display next miniature
@@ -55,11 +52,8 @@ function loadNext(index_image)
         var pop = document.getElementById("pop");
         var images = pop.getElementsByClassName("images")[0];
         var img_dom = document.createElement("img");
-        img_dom.onload = function()
-        {
-            enableClickNext(index_image)
-    		img_dom.classList.add("next-img");
-        }
+        img_dom.classList.add("next-img");
+        img_dom.onload = () => enableClickNext(index_image)
         img_dom.src = list_files[index_image+1];
         images.appendChild(img_dom);
     }
@@ -69,16 +63,16 @@ function loadNext(index_image)
 function enableClickPrevious(index_image)
 {
     var pop = document.getElementById("pop");
-    pop.getElementsByClassName("before")[0].classList.remove("progress");
-    pop.getElementsByClassName("before")[0].onclick = function(){ previous(index_image) };
+    pop.getElementsByClassName("previous-img")[0].classList.remove("progress");
+    pop.getElementsByClassName("previous-img")[0].onclick = function(){ previous(index_image) };
 }
 
 // disable click for previous img and set cursor as loading
 function disableClickPrevious()
 {
     var pop = document.getElementById("pop");
-    pop.getElementsByClassName("before")[0].classList.add("progress");
-    pop.getElementsByClassName("before")[0].onclick = null
+    pop.getElementsByClassName("previous-img")[0].classList.add("progress");
+    pop.getElementsByClassName("previous-img")[0].onclick = null
 }
 
 function loadPrevious(index_image,image)
@@ -88,11 +82,8 @@ function loadPrevious(index_image,image)
         var pop = document.getElementById("pop");
         var images = pop.getElementsByClassName("images")[0];
         var img_dom = document.createElement("img");
-        img_dom.onload = function()
-        {
-            enableClickPrevious(index_image)
-    		img_dom.classList.add("previous-img");
-        }
+        img_dom.classList.add("previous-img");
+        img_dom.onload = () => enableClickPrevious(index_image)
         img_dom.src = list_files[index_image-1];
         images.insertBefore(img_dom,image);
     }
@@ -111,7 +102,6 @@ function resetState(previousImg,currentImg,nextImg,index_image)
     }
     else
     {
-        disableClickPrevious()
         loadPrevious(index_image,currentImg)
     }
 
@@ -122,7 +112,6 @@ function resetState(previousImg,currentImg,nextImg,index_image)
     }
     else
     {
-        disableClickNext()
         loadNext(index_image)
     }
 

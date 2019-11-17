@@ -9,30 +9,28 @@
 	<link rel="stylesheet" href="https://fonts.ppsfleet.navy/Josephin_sans/style.css" />
     <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
     <script src="/static/js/slider.js"></script>
-    
+
     <title></title>
 
   </head>
 
   <body>
-    
+
     {{template "navbar" .}}
-    <main> 
+    <main>
     {{template "header" .}}
-    
+
     <div id="all-content" class="{{.Content_id}}">
-    
+
       {{ template "content" .}}
     </div>
   	</main>
     <div id="pop">
       <img class="quit" src="/static/images/cross.svg" onclick="cacheSlider()"/>
       <div class="container_all">
-        <div class="before progress"></div>
         <div class="images">
           <img class="visible" src="/static/galerie/fleurs/flower-179004.jpg"/>
         </div>
-        <div class="after progress" ></div>
       </div>
 
 
@@ -58,6 +56,6 @@
 
 </html>
 
- 
+
 
 {{ end }}

@@ -1,5 +1,5 @@
 
-@font-face 
+@font-face
 {
 	/*
         Copyright (c) 2011, Pablo Impallari (www.impallari.com|impallari@gmail.com),
@@ -13,7 +13,7 @@
 	src: url("/static/fonts/KaushanScript-Regular.otf") format("opentype");
 }
 
-* 
+*
 {
    box-sizing: border-box;
 }
@@ -23,7 +23,7 @@ html,body
     margin: 0;
     padding: 0;
     min-height: 100vh;
-	font-family: JosefinSans;    
+	font-family: JosefinSans;
 }
 
 body
@@ -32,9 +32,9 @@ body
 }
 
 .main-nav
-{	
-	padding:2em 0;	
-	background-color:white;	
+{
+	padding:2em 0;
+	background-color:white;
 	box-shadow: 6px 0px 28px -4px rgba(0,0,0,0.2);
 	z-index:2;
 	flex-shrink:0;
@@ -93,7 +93,7 @@ h2
 
 main
 {
-	background-color:#DFE2E6;	
+	background-color:#DFE2E6;
 	flex-grow:1;
 	padding:2em;
 	overflow-y: auto;
@@ -104,12 +104,12 @@ main
 #fichiers .dossier,#fichiers .ajout
 {
     width: 300px;
-    height: 300px;    
+    height: 300px;
     display: inline-flex;
     justify-content: space-around;
     align-items: center;
     vertical-align: middle;
-    opacity: 0.8; 
+    opacity: 0.8;
     /*border:2px solid white;*/
 	margin: 2em;
 	background-image: url("/static/images/zozios.jpg");
@@ -122,7 +122,7 @@ main
 
 #fichiers .dossier h3
 {
-	background-color: #ffffffe8;	
+	background-color: #ffffffe8;
 	padding: 0.5em;
 	width:10em;
 	text-align:center;
@@ -138,8 +138,8 @@ main
 
 #fichiers .image_conteneur
 {
-    display: inline-block;    
-	margin:1em;    
+    display: inline-block;
+	margin:1em;
 
 }
 
@@ -220,32 +220,6 @@ main
 	color:transparent;
 }
 
-#pop .before:hover, #pop .after:hover
-{
-	cursor:pointer;
-	border:none;
-    color:white;
-	background-color:rgba(255,255,255,0.02);
-}
-
-#pop .before.progress:hover, #pop .after.progress:hover
-{
-	cursor:progress;
-	border:none;
-    color:white;
-	background-color:rgba(255,255,255,0.00);
-}
-
-#pop .before
-{
-	left:0px;
-}
-
-#pop .after
-{
-	right:0px;	
-}
-
 
 #pop .before img,#pop .after img
 {
@@ -277,7 +251,7 @@ main
 #pop .images img.visible
 {
     display: block;
-    z-index: 11; 
+    z-index: 11;
     width: calc( 100% - 500px);
     height:calc( 100vh - 50px);
     object-fit: contain;
@@ -302,7 +276,16 @@ main
 	top: 50%;
 	transform: translateY(-50%);
 	opacity:0.8;
+    height: 100%;
+    object-fit: contain;
 }
+
+#pop .images img.previous-img:hover,#pop .images img.next-img:hover
+{
+    background-color:rgba(255,255,255,0.02);
+    cursor: pointer;
+}
+
 
 
 #pop .images img.previous-img
@@ -310,9 +293,24 @@ main
 	left: -105px;
 }
 
+#pop .images img.previous-img:hover
+{
+    left: 0;
+    width: 240px;
+    transition: all 0.15s ease-in;
+}
+
+
 #pop .images img.next-img
 {
 	right: -105px;
+}
+
+#pop .images img.next-img:hover
+{
+    right: 0;
+    width: 240px;
+    transition: all 0.15s ease-in;
 }
 
 @media only screen and (max-width: 600px)
