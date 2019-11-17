@@ -53,6 +53,7 @@ function loadNext(index_image)
         var images = pop.getElementsByClassName("images")[0];
         var img_dom = document.createElement("img");
         img_dom.classList.add("next-img");
+        img_dom.classList.add("progress");
         img_dom.onload = () => enableClickNext(index_image)
         img_dom.src = list_files[index_image+1];
         images.appendChild(img_dom);
@@ -83,6 +84,7 @@ function loadPrevious(index_image,image)
         var images = pop.getElementsByClassName("images")[0];
         var img_dom = document.createElement("img");
         img_dom.classList.add("previous-img");
+        img_dom.classList.add("progress");
         img_dom.onload = () => enableClickPrevious(index_image)
         img_dom.src = list_files[index_image-1];
         images.insertBefore(img_dom,image);
