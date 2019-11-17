@@ -9,19 +9,17 @@ function cacheSlider()
 function slider(image)
 {
     var index = list_files.indexOf(image);
-
     var pop = document.getElementById("pop");
     pop.style.display = "flex";//display slider
 
-    //pop.getElementsByClassName("after")[0].src = "/static/images/loader1.svg";
     pop.getElementsByClassName("after")[0].onclick = null;
-    //pop.getElementsByClassName("before")[0].src = "/static/images/loader1.svg";
+    pop.getElementsByClassName("before")[0].onclick = null;
 
     var images = pop.getElementsByClassName("images")[0];
     images.innerHTML = "";
-    
+
     var img_dom = document.createElement("img");
-    
+
     img_dom.className = "visible";
     images.appendChild(img_dom);
     img_dom.onload = function()
@@ -33,111 +31,120 @@ function slider(image)
 
 }
 
-function loadNext(i)
+// enable click for next img
+function enableClickNext(index_image)
 {
-    console.log("next !");
-    if(i < list_files.length - 1)
+    var pop = document.getElementById("pop");
+    pop.getElementsByClassName("after")[0].classList.remove("progress");
+    pop.getElementsByClassName("after")[0].onclick = function(){ next(index_image) };
+}
+
+// disable click for next img and set cursor as loading
+function disableClickNext()
+{
+    var pop = document.getElementById("pop");
+    pop.getElementsByClassName("after")[0].classList.add("progress");
+    pop.getElementsByClassName("after")[0].onclick = null
+}
+
+//display next miniature
+function loadNext(index_image)
+{
+    if(index_image < list_files.length - 1)
     {
         var pop = document.getElementById("pop");
         var images = pop.getElementsByClassName("images")[0];
         var img_dom = document.createElement("img");
         img_dom.onload = function()
         {
-            // pop.getElementsByClassName("after")[0].src = "/static/images/arrow-right.svg";
-        	pop.getElementsByClassName("after")[0].classList.remove("progress");
-            pop.getElementsByClassName("after")[0].onclick = function(){ next(i) };
+            enableClickNext(index_image)
     		img_dom.classList.add("next-img");
-            console.log("ok next!");
         }
-        img_dom.src = list_files[i+1];
+        img_dom.src = list_files[index_image+1];
         images.appendChild(img_dom);
     }
 }
 
-
-function loadPrevious(i,image)
+// enable click for previous img
+function enableClickPrevious(index_image)
 {
-    if(i > 0)
+    var pop = document.getElementById("pop");
+    pop.getElementsByClassName("before")[0].classList.remove("progress");
+    pop.getElementsByClassName("before")[0].onclick = function(){ previous(index_image) };
+}
+
+// disable click for previous img and set cursor as loading
+function disableClickPrevious()
+{
+    var pop = document.getElementById("pop");
+    pop.getElementsByClassName("before")[0].classList.add("progress");
+    pop.getElementsByClassName("before")[0].onclick = null
+}
+
+function loadPrevious(index_image,image)
+{
+    if(index_image > 0)
     {
         var pop = document.getElementById("pop");
         var images = pop.getElementsByClassName("images")[0];
         var img_dom = document.createElement("img");
         img_dom.onload = function()
         {
-            // pop.getElementsByClassName("before")[0].src = "/static/images/arrow-left.svg";
-        	pop.getElementsByClassName("before")[0].classList.remove("progress");
-            pop.getElementsByClassName("before")[0].onclick = function(){ previous(i) };
+            enableClickPrevious(index_image)
     		img_dom.classList.add("previous-img");
-            console.log("ok before!");
         }
-        img_dom.src = list_files[i-1];
+        img_dom.src = list_files[index_image-1];
         images.insertBefore(img_dom,image);
     }
 }
 
-function next(i)
+function resetState(previousImg,currentImg,nextImg,index_image)
 {
-    var pop = document.getElementById("pop");
-    var enCours = pop.getElementsByClassName("visible")[0];
-    enCours.classList.remove("visible");
-    enCours.classList.add("previous-img");
-    var suivant = enCours.nextElementSibling;
-    var precedent = enCours.previousElementSibling;
-    if(suivant != null)
+    pop.querySelectorAll(".previous-img").forEach(e => e.classList.remove('previous-img'));
+    pop.querySelectorAll(".next-img").forEach(e => e.classList.remove('next-img'));
+    pop.querySelectorAll(".visible").forEach(e => e.classList.remove('visible'));
+
+    if(previousImg != null)
     {
-        suivant.classList.add("visible");
-    	suivant.classList.remove("next-img");
-    	if (precedent != null)
-			precedent.classList.remove("previous-img");
-        if(suivant.nextElementSibling == null)
-        {
-            pop.getElementsByClassName("after")[0].classList.add("progress")
-            pop.getElementsByClassName("after")[0].onclick = null;
-            loadNext(i+1);
-        }
-        else
-        {
-            pop.getElementsByClassName("after")[0].onclick = function(){ next(i+1) };
-        	suivant.nextElementSibling.classList.add("next-img")
-		}
-        
-        pop.getElementsByClassName("before")[0].classList.remove("progress");
-        pop.getElementsByClassName("before")[0].onclick = function(){ previous(i+1) };
-        
+        previousImg.classList.add("previous-img")
+        enableClickPrevious(index_image)
     }
+    else
+    {
+        disableClickPrevious()
+        loadPrevious(index_image,currentImg)
+    }
+
+    if(nextImg != null)
+    {
+        nextImg.classList.add("next-img")
+        enableClickNext(index_image)
+    }
+    else
+    {
+        disableClickNext()
+        loadNext(index_image)
+    }
+
+    currentImg.classList.add('visible')
+
 }
 
-function previous(i)
+
+function next(index_image)
 {
     var pop = document.getElementById("pop");
     var enCours = pop.getElementsByClassName("visible")[0];
-    enCours.classList.remove("visible");
-    enCours.classList.add("next-img");
-    
+    var suivant = enCours.nextElementSibling;
+    var precedent = enCours.previousElementSibling;
+    resetState(enCours,suivant,suivant.nextElementSibling,index_image+1)
+}
+
+function previous(index_image)
+{
+    var pop = document.getElementById("pop");
+    var enCours = pop.getElementsByClassName("visible")[0];
     var precedent = enCours.previousElementSibling;
     var suivant = enCours.nextElementSibling;
-    if(precedent != null)
-    {
-
-    	precedent.classList.remove("previous-img");
-        precedent.classList.add("visible");
-    	if (suivant != null)
-			suivant.classList.remove("next-img");
-        if(precedent.previousElementSibling == null)
-        {
-            // pop.getElementsByClassName("before")[0].src = "/static/images/loader1.svg";
-            pop.getElementsByClassName("before")[0].onclick = null;
-            loadPrevious(i-1,precedent)
-        }
-        else
-        {
-            pop.getElementsByClassName("before")[0].onclick = function(){ previous(i-1) };
-        	precedent.previousElementSibling.classList.add("previous-img");
-
-		}
-        
-        // pop.getElementsByClassName("after")[0].src = "/static/images/arrow-right.svg";
-        pop.getElementsByClassName("after")[0].onclick = function(){ next(i-1) };
-        
-    }
+    resetState(precedent.previousElementSibling,precedent,enCours,index_image-1)
 }
