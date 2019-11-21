@@ -28,6 +28,7 @@ func main() {
 	router.HandleFunc("/login.html", login)
 	router.HandleFunc("/miniature/{dossier}/{file}", miniature)
 	router.HandleFunc("/bigMiniature/{dossier}/{file}", bigMiniature)
+	router.HandleFunc("/nightMode", nightMode)
 	s1 := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
 	router.PathPrefix("/").Handler(s1)
 	http.Handle("/", router)

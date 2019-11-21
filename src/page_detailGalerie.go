@@ -36,7 +36,7 @@ func sortImagesByDateInsertion(files []string,len int) []string{
             files[j] = files[j - 1]
             j = j-1
         }
-		files[j] = y 
+		files[j] = y
 	}
 	return files
 }
@@ -48,7 +48,7 @@ func sortImagesByDate(files []string,len int) []string{
 			data2, err2 := exif.Read("static/galerie/"+files[j+1])
 			if err1 == nil {
 				if err2 == nil {
-					//date1 = 		
+					//date1 =
 					if(data2.Tags["Date and Time (Original)"] < data1.Tags["Date and Time (Original)"]) {
 						//fmt.Printf("\n")
 						//fmt.Printf(data2.Tags["Date and Time (Original)"] +" < ")
@@ -104,12 +104,14 @@ func detailGalerie(response http.ResponseWriter, request *http.Request) {
 		Links      []Link
 		Nav        bool
 		Content_id string
+		NightMode bool
 	}{
 		names_files,
 		vars["dossier"],
 		links,
 		true,
 		"photos",
+		getNightValue(request),
 	}
 
 	t := template.New("")

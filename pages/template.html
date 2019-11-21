@@ -9,12 +9,17 @@
 	<link rel="stylesheet" href="https://fonts.ppsfleet.navy/Josephin_sans/style.css" />
     <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
     <script src="/static/js/slider.js"></script>
-
+    <script src="/static/js/nightMode.js"></script>
+    
     <title></title>
 
   </head>
 
-  <body>
+  <body
+    {{if .NightMode}}
+    class="night"
+    {{end}}
+  >
 
     {{template "navbar" .}}
     <main>

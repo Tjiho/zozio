@@ -29,12 +29,27 @@ html,body
 body
 {
 	display:flex;
+    --main-bg-color: #DFE2E6;
+    --nav-bg-color: white;
+    --fg-color:black;
+    color:var(--fg-color);
+    --icon-invert:invert(0%);
+}
+
+body.night
+{
+    --main-bg-color: #272649;/*#2940A4;*/
+
+    --nav-bg-color: #213460;;
+    --fg-color:rgb(240,230,200);
+    --icon-invert:invert(100%);
+
 }
 
 .main-nav
 {
-	padding:2em 0;
-	background-color:white;
+	padding:0em 0 0 0;
+	background-color:var(--nav-bg-color);
 	box-shadow: 6px 0px 28px -4px rgba(0,0,0,0.2);
 	z-index:2;
 	flex-shrink:0;
@@ -52,7 +67,7 @@ body
 	padding:0px 20px;
 	font-variant: small-caps;
 	font-size:1.5em;
-	color:black;
+	color:var(--fg-color);
 }
 
 .main-nav .external
@@ -64,8 +79,22 @@ body
 {
 	display:block;
 	padding:0.2em 20px;
-	color:black;
+	color:var(--fg-color);
 	font-size:1.2em
+}
+
+.main-nav .actions
+{
+    display: flex;
+    padding:1em;
+    justify-content: flex-end;
+    filter: var(--icon-invert);
+}
+
+.main-nav .actions__icons
+{
+    height: 25px;
+    cursor: pointer;
 }
 
 a
@@ -93,7 +122,7 @@ h2
 
 main
 {
-	background-color:#DFE2E6;
+	background-color:var(--main-bg-color);
 	flex-grow:1;
 	padding:2em;
 	overflow-y: auto;
@@ -114,7 +143,7 @@ main
 	margin: 2em;
 	background-image: url("/static/images/zozios.jpg");
     background-size: cover;
-	color:black;
+	color:var(--fg-color);
 	text-decoration:none;
 	font-variant:small-caps;
 	font-size:1em;
@@ -128,6 +157,7 @@ main
 	text-align:center;
 	border-radius: 0em;
 	font-weight:normal;
+    color:black;
 }
 
 
@@ -169,6 +199,7 @@ main
     display: inline-block;
 	text-decoration:none;
 	color:rgb(30,30,30);
+    filter: var(--icon-invert);
 	font-size:0.8em;
 }
 

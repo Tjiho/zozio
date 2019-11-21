@@ -1,8 +1,20 @@
+
+window.onload = function() {
+    var pop = document.getElementById("pop");
+    pop.addEventListener("click", (e) => {
+        console.log("not implemented")
+    });
+}
+
+
+
 function cacheSlider()
 {
     var pop = document.getElementById("pop");
     pop.style.display = "none";//display slider
 }
+
+
 
 
 //init slider with image in arg
