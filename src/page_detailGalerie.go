@@ -82,7 +82,7 @@ func detailGalerie(response http.ResponseWriter, request *http.Request) {
 	for _, f := range files {
 		var extension = filepath.Ext(f.Name())
 
-		if !f.IsDir() && (extension == ".jpg" || extension == ".JPG") {
+		if !f.IsDir() && (extension == ".jpg" || extension == ".JPG" || extension == ".png" || extension == ".PNG") {
 			names_files = Extend(names_files, vars["dossier"]+"/"+f.Name())
 			i = i+1
 		}
