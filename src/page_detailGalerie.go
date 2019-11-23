@@ -15,19 +15,20 @@ import (
 )
 
 
-func getExifDate(file string) string{
-	data, err := exif.Read("static/galerie/"+file)
-    if err != nil {
-        return "2099:12:30 23:50:50"
+func getExifDate(file ImageSimple) string{
+    value, ok := file.ExifData["Date and Time"]
+	if ok {
+		return value
     } else {
-        return data.Tags["Date and Time (Original)"]
+		return "2099:12:30 23:50:50"
     }
 }
 
-func sortImagesByDateInsertion(files []string,len int) []string{
+func sortImagesByDateInsertion(files []ImageSimple,len int) []ImageSimple{
 	j := 0
-	x := ""
-	y := ""
+	var y ImageSimple
+	var x string
+
 	for i:= 1; i < len - 1;i++ {
 	    x = getExifDate(files[i])
 		y = files[i]
@@ -76,15 +77,29 @@ func detailGalerie(response http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)
 	path := "static/galerie/" + vars["dossier"]
 	files, _ := ioutil.ReadDir(path)
-	names_files := []string{}
+	names_files := []ImageSimple{}
 	i := 0
 	//list files
 	for _, f := range files {
 		var extension = filepath.Ext(f.Name())
 
 		if !f.IsDir() && (extension == ".jpg" || extension == ".JPG" || extension == ".png" || extension == ".PNG") {
-			names_files = Extend(names_files, vars["dossier"]+"/"+f.Name())
+			data, err := exif.Read(path+ "/" + f.Name())
+			if err == nil {
+				names_files = append(names_files, ImageSimple { //Todo: use a list and not a Slice
+					Name: f.Name(),
+					Path: vars["dossier"]+"/"+f.Name(),
+					ExifData: data.Tags,
+				})
+			} else {
+				names_files = append(names_files, ImageSimple { //Todo: use a list and not a Slice
+					Name: f.Name(),
+					Path: vars["dossier"]+"/"+f.Name(),
+					ExifData: nil,
+				})
+			}
 			i = i+1
+
 		}
 
 	}
@@ -99,7 +114,7 @@ func detailGalerie(response http.ResponseWriter, request *http.Request) {
 	}
 
 	data := struct {
-		Files      []string
+		Files      []ImageSimple
 		Title      string
 		Links      []Link
 		Nav        bool

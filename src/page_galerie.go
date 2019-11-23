@@ -21,10 +21,8 @@ func galerie(response http.ResponseWriter, request *http.Request) {
 
 	files, _ := ioutil.ReadDir("./static/galerie")
 	names_files := []string{}
-
-	links := []Link{}
 	nightMode := getNightValue(request)
-	
+
 	for _, f := range files {
 		if _, err := os.Stat("./static/galerie/"+f.Name()+"/private.txt");  os.IsNotExist(err) {
 			names_files = Extend(names_files, f.Name())
@@ -35,14 +33,12 @@ func galerie(response http.ResponseWriter, request *http.Request) {
 	data := struct {
 		Files      []string
 		Title      string
-		Links      []Link
 		Nav        bool
 		Content_id string
 		NightMode bool
 	}{
 		names_files,
 		"Les galeries",
-		links,
 		true,
 		"galeries",
 		nightMode,

@@ -119,7 +119,6 @@ func miniature(response http.ResponseWriter, request *http.Request) {
 	pathMinDir := "static/galerie/" + vars["dossier"] + "/min/"
 
 	createMiniature(vars["dossier"],vars["file"],pathMinDir,300,response,request)
-
 }
 
 
@@ -129,5 +128,4 @@ func bigMiniature(response http.ResponseWriter, request *http.Request) {
 		pathMinDir := "static/galerie/" + vars["dossier"] + "/bigMin/"
 
 		createMiniature(vars["dossier"],vars["file"],pathMinDir,1100,response,request)
-
 }

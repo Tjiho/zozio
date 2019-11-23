@@ -14,6 +14,12 @@ type Link struct {
 	Link  string
 }
 
+type ImageSimple struct {
+	Name string
+	Path string
+	ExifData map[string]string
+}
+
 var router = mux.NewRouter()
 
 func main() {

@@ -129,6 +129,25 @@ main
 	height: 100vh;
 }
 
+.exif-resume__data__icon
+{
+    height: 1em;
+    vertical-align: top;
+    filter: var(--icon-invert);
+}
+
+.exif-resume
+{
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.exif-resume__data
+{
+    width: 50%;
+    padding-top: 0.3em;
+}
 
 #fichiers .dossier,#fichiers .ajout
 {
