@@ -8,7 +8,7 @@
 
                 <div class="image_background">
                     <div class="image" style="background-image:url('/miniature/{{.Path}}');" onclick="slider('/bigMiniature/{{.Path}}')"></div>
-                    <div class="exif-more">
+                    <div class="exif-more" onclick="slider('/bigMiniature/{{.Path}}')">
                         <div>
                             {{.Name}}
                             <div class="exif-more__model">{{index .ExifData "Model"}}</div>
