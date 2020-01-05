@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	"image/jpeg"
+	"image/png"
+	"image"
 	"log"
 	"net/http"
 	"os"
-
+	"path/filepath"
 	"github.com/gorilla/mux"
 	"github.com/nfnt/resize"
 	"github.com/xiam/exif"
@@ -53,10 +55,17 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 		_, err := os.Stat(pathMinFile)
 		if err != nil {
 			if os.IsNotExist(err) {
-				print("resize : " + path + "\n")
+				print("go resize : " + path + "\n")
+				extension := filepath.Ext(fileName)
+				// decode jpeg or png into image.Image
+				var img image.Image
 
-				// decode jpeg into image.Image
-				img, err := jpeg.Decode(file)
+				if  extension == ".jpg" || extension == ".JPG" {
+					img, err = jpeg.Decode(file)
+				} else if extension == ".png" || extension == ".PNG" {
+					img, err = png.Decode(file)
+				}
+
 				if err != nil {
 					log.Fatal("\n\roups:", err)
 				}
@@ -84,7 +93,11 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 					log.Fatal(err)
 				}
 				defer out.Close()
-				jpeg.Encode(out, m, nil)
+				if  extension == ".jpg" || extension == ".JPG" {
+					jpeg.Encode(out, m, nil)
+				} else if extension == ".png" || extension == ".PNG" {
+					png.Encode(out, m)
+				}
 			} else {
 				response.WriteHeader(http.StatusInternalServerError)
 			}
@@ -101,16 +114,13 @@ func miniature(response http.ResponseWriter, request *http.Request) {
 	pathMinDir := "static/galerie/" + vars["dossier"] + "/min/"
 
 	createMiniature(vars["dossier"],vars["file"],pathMinDir,300,response,request)
-
 }
 
 
 func bigMiniature(response http.ResponseWriter, request *http.Request) {
-	
+
 		vars := mux.Vars(request)
 		pathMinDir := "static/galerie/" + vars["dossier"] + "/bigMin/"
-	
-		createMiniature(vars["dossier"],vars["file"],pathMinDir,900,response,request)
-	
+
+		createMiniature(vars["dossier"],vars["file"],pathMinDir,1100,response,request)
 }
-	

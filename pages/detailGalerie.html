@@ -5,12 +5,39 @@
 <section id="fichiers" class="details">
     {{range .Files}}
             <div class="image_conteneur">
+
                 <div class="image_background">
-                    <div class="image" style="background-image:url('/miniature/{{.}}');" onclick="slider('/bigMiniature/{{.}}')"></div>
-                    
+                    <div class="image" style="background-image:url('/miniature/{{.Path}}');" onclick="slider('/bigMiniature/{{.Path}}')"></div>
+                    <div class="exif-more" onclick="slider('/bigMiniature/{{.Path}}')">
+                        <div>
+                            {{.Name}}
+                            <div class="exif-more__model">{{index .ExifData "Model"}}</div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="exif-resume">
+                    <span class="exif-resume__data">
+                        <img src="/static/images/aperture.svg" class="exif-resume__data__icon"/>
+                        {{index .ExifData "F-Number"}}
+                    </span>
+                    <span class="exif-resume__data">
+                        <img src="/static/images/exposure.svg" class="exif-resume__data__icon"/>
+                        {{index .ExifData "Exposure Time"}}
+                    </span>
+                    <br/>
+                    <span class="exif-resume__data">
+                        <img src="/static/images/focal.svg" class="exif-resume__data__icon"/>
+                        {{index .ExifData "Focal Length"}}
+                    </span>
+                    <span class="exif-resume__data">
+                        ISO {{index .ExifData "ISO Speed Ratings"}}
+                    </span>
+
+                </div>
+
                 <div class="action_bar">
-                    <a href="/static/galerie/{{.}}" download="" class="action"><img src="/static/images/download.svg"></a>
+                    <a href="/static/galerie/{{.Path}}" download="" class="action"><img src="/static/images/download.svg">Download</a>
                     <span class="action"></span>
                     <span class="action"></span>
                 </div>
@@ -21,7 +48,7 @@
         //we create a list with all files
         list_files = new Array();
         {{range .Files}}
-            list_files.push('/bigMiniature/{{.}}')
+            list_files.push('/bigMiniature/{{.Path}}')
         {{end}}
     </script>
 </section>

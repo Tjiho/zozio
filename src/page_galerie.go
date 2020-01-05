@@ -9,31 +9,39 @@ import (
 )
 
 func galerie(response http.ResponseWriter, request *http.Request) {
-	
+
+	// session, err := store.Get(request, "zozio")
+    // if err != nil {
+    //    http.Error(response, err.Error(), http.StatusInternalServerError)
+    //    return
+    //}
+
+    // isConnected, _ := session.Values["connected"].(bool)
+
+
 	files, _ := ioutil.ReadDir("./static/galerie")
 	names_files := []string{}
-
-	links := []Link{}
+	nightMode := getNightValue(request)
 
 	for _, f := range files {
 		if _, err := os.Stat("./static/galerie/"+f.Name()+"/private.txt");  os.IsNotExist(err) {
 			names_files = Extend(names_files, f.Name())
 		}
-		
+
 	}
 
 	data := struct {
 		Files      []string
 		Title      string
-		Links      []Link
 		Nav        bool
 		Content_id string
+		NightMode bool
 	}{
 		names_files,
 		"Les galeries",
-		links,
 		true,
 		"galeries",
+		nightMode,
 	}
 
 	//colors := []string{"#27bfe7","#5227e7","#c927e7","#f16bcd","#e71e50","#e78027","#e7bd27","#27e763","#4baf6b"}

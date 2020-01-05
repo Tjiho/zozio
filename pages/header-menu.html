@@ -1,13 +1,27 @@
 
+{{ define "navbar" }}
+<nav class="main-nav">
+<a href='/'>
+	<h1>Zozios !</h1>
+</a>
+<div class="internal">
+<a href="/galerie.html">Les galeries</a>
+</div>
+<div class="external">
+<a href="http://pixelfed.social/tjiho">Pixelfed</a>
+<a href="http://tom.darboux.me">About me</a>
+</div>
+<div class="actions">
+	<img class="actions__icons" src="/static/images/planet.svg" onclick="nightMode()"/>
+</div>
+
+</nav>
+{{ end }}
+
 {{ define "header" }}
 <header id="buttonBar">
-    <h1>{{.Title}}</h1>
+    <h2>{{.Title}}</h2>
     <nav>
-        {{range .Links}}
-        <a href="{{.Link}}">
-            <img src="{{.Image}}" id="retour"/>
-        </a>
-        {{ end }}
     </nav>
 </header>
 {{ end }}

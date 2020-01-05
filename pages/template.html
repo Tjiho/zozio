@@ -6,36 +6,61 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/static/css/style.css" />
-<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="https://fonts.ppsfleet.navy/Josephin_sans/style.css" />
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
     <script src="/static/js/slider.js"></script>
+    <script src="/static/js/nightMode.js"></script>
     
     <title></title>
 
   </head>
 
-  <body>
-    
-    
+  <body
+    {{if .NightMode}}
+    class="night"
+    {{end}}
+  >
+
+    {{template "navbar" .}}
+    <main>
     {{template "header" .}}
-    
+
     <div id="all-content" class="{{.Content_id}}">
-    
+
       {{ template "content" .}}
     </div>
-  
+  	</main>
     <div id="pop">
       <img class="quit" src="/static/images/cross.svg" onclick="cacheSlider()"/>
       <div class="container_all">
-        <img class="before" />
         <div class="images">
           <img class="visible" src="/static/galerie/fleurs/flower-179004.jpg"/>
         </div>
-        <img class="after" />
       </div>
+
+
+<!-- Matomo -->
+<script type="text/javascript">
+  var _paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//startupvoyance.ppsfleet.navy/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '3']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="//startupvoyance.ppsfleet.navy/matomo.php?idsite=3&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Matomo Code -->
+
+
   </body>
 
 </html>
 
- 
+
 
 {{ end }}
