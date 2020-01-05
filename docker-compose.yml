@@ -4,6 +4,6 @@ services:
     build: .
     ports:
      - 8764:8764
-    command: bash -c "go build src/zozios.go src/image.go src/login.go src/page_detailGalerie.go src/page_galerie.go src/page_index.go src/randomImage.go && /code/zozios"
+    command: bash -c "go build src/zozios.go src/image.go src/login.go src/page_detailGalerie.go src/page_galerie.go src/page_index.go src/randomImage.go src/night.go && /code/zozios"
     volumes:
      - ./:/code
