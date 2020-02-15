@@ -140,13 +140,16 @@ main
 {
     display: flex;
     flex-wrap: wrap;
-
+    width:200px;
 }
 
 .exif-resume__data
 {
     width: 50%;
     padding-top: 0.3em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .exif-more
@@ -230,13 +233,14 @@ main
 
 #fichiers .image
 {
-	border-radius:3px;
-    width: 330px;
-    height: 238px;
+    border-radius:0px;
+    width: 250px;
+    height: 250px;
     display: inline-block;
     box-shadow: none;
     box-shadow: 1px 1px 20px rgba(0,0,0,0.3);
     background-size:cover;
+    background-position-x:center;	
 }
 
 
@@ -335,6 +339,7 @@ main
     height:calc( 100vh - 50px);
     object-fit: contain;
     margin:auto;
+    cursor:pointer;
 }
 
 #pop .images img
@@ -399,5 +404,13 @@ main
 
 @media only screen and (max-width: 600px)
 {
+	.main-nav
+	{
+		display:none;
+	}
 
+	main
+	{
+		padding:0;
+	}
 }

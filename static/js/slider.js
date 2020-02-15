@@ -38,6 +38,7 @@ function slider(image)
     }
     img_dom.src = image;
 
+    img_dom.onclick = (e) => { window.open(list_original[index]) }
 }
 
 // enable click for next img
@@ -130,7 +131,8 @@ function resetState(previousImg,currentImg,nextImg,index_image)
     }
 
     currentImg.classList.add('visible')
-
+    console.log(currentImg)
+    currentImg.onclick = (e) => { window.open(list_original[index_image]) }
 }
 
 
