@@ -50,6 +50,11 @@
         {{range .Files}}
             list_files.push('/bigMiniature/{{.Path}}')
         {{end}}
+        
+	list_original = new Array();
+        {{range .Files}}
+            list_original.push('/static/galerie/{{.Path}}')
+        {{end}}
     </script>
 </section>
 {{end}}

@@ -122,5 +122,5 @@ func bigMiniature(response http.ResponseWriter, request *http.Request) {
 		vars := mux.Vars(request)
 		pathMinDir := "static/galerie/" + vars["dossier"] + "/bigMin/"
 
-		createMiniature(vars["dossier"],vars["file"],pathMinDir,1100,response,request)
+		createMiniature(vars["dossier"],vars["file"],pathMinDir,1500,response,request)
 }
