@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	
+
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
 )
@@ -38,6 +38,7 @@ func main() {
 	s1 := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
 	router.PathPrefix("/").Handler(s1)
 	http.Handle("/", router)
+	print("Zozio is listening at http://0.0.0.0:8764")
 	http.ListenAndServe("0.0.0.0:8764", nil)
 }
 

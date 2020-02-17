@@ -34,7 +34,6 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 	stat, err := os.Stat(pathMinDir)
 	if err != nil {
 		if os.IsNotExist(err) {
-			fmt.Printf("new miniature dir!")
 			os.Mkdir(pathMinDir, os.FileMode(0755))
 		} else {
 			fmt.Printf("error!")
@@ -55,7 +54,6 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 		_, err := os.Stat(pathMinFile)
 		if err != nil {
 			if os.IsNotExist(err) {
-				print("go resize : " + path + "\n")
 				extension := filepath.Ext(fileName)
 				// decode jpeg or png into image.Image
 				var img image.Image
