@@ -33,8 +33,17 @@
     <div id="pop">
       <img class="quit" src="/static/images/cross.svg" onclick="cacheSlider()"/>
       <div class="pop--nav">
-        <div class="button">Retour</div>
-        <div class="button">Download</div>
+        <span class="pop--previous">
+          <div class="button" id="pop--previous-button">Previous</div>
+        </span>
+        <span class="pop--nav--center">
+          <div class="button" onclick="cacheSlider()">Retour</div>
+          <div class="button">Download</div>
+        </span>
+        <span class="pop--next">
+          <div class="button" id="pop--next-button">Next</div>
+        </span>
+
       </div>
       <div class="container_all">
         <div class="images">

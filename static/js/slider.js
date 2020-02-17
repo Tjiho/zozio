@@ -47,6 +47,9 @@ function enableClickNext(index_image)
     var pop = document.getElementById("pop");
     pop.getElementsByClassName("next-img")[0].classList.remove("progress");
     pop.getElementsByClassName("next-img")[0].onclick = function(){ next(index_image) };
+    document.getElementById("pop--next-button").classList.remove("progress");
+    document.getElementById("pop--next-button").onclick = function(){ next(index_image) };
+
 }
 
 // disable click for next img and set cursor as loading
@@ -55,6 +58,8 @@ function disableClickNext()
     var pop = document.getElementById("pop");
     pop.getElementsByClassName("next-img")[0].classList.add("progress");
     pop.getElementsByClassName("next-img")[0].onclick = null
+    document.getElementById("pop--next-button").classList.add("progress");
+    document.getElementById("pop--next-button").onclick = null
 }
 
 //display next miniature
@@ -79,6 +84,7 @@ function enableClickPrevious(index_image)
     var pop = document.getElementById("pop");
     pop.getElementsByClassName("previous-img")[0].classList.remove("progress");
     pop.getElementsByClassName("previous-img")[0].onclick = function(){ previous(index_image) };
+    document.getElementById("pop--previous-button").onclick = function(){ previous(index_image) };
 }
 
 // disable click for previous img and set cursor as loading
@@ -87,6 +93,8 @@ function disableClickPrevious()
     var pop = document.getElementById("pop");
     pop.getElementsByClassName("previous-img")[0].classList.add("progress");
     pop.getElementsByClassName("previous-img")[0].onclick = null
+    document.getElementById("pop--previous-button").classList.add("progress");
+    document.getElementById("pop--previous-button").onclick = null
 }
 
 function loadPrevious(index_image,image)
