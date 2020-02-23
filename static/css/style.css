@@ -462,11 +462,20 @@ main
 
 @media only screen and (max-width: 850px)
 {
+  
+  #pop
+  {
+    justify-content: normal;
+  }
   #pop .container_all
   {
     padding-bottom: 0px;
+    overflow:hidden;
   }
-
+  #pop .images
+  {
+  	align-self:auto;
+  }
   #pop .images img.previous-img, #pop .images img.next-img
   {
     display: none;
@@ -475,7 +484,7 @@ main
   #pop .images img.visible
   {
     width: calc(100% - 10px);
-    height: calc( 100% - 10px);
+    height: 100%;
   }
 
   #pop .quit
@@ -497,9 +506,9 @@ main
   #pop .pop--nav .button
   {
     padding: 5px;
-    font-size: 1rem;
+    font-size: 1em;
     margin-right: 1em;
-    min-width: 6rem;
+    min-width: 6em;
     text-align: center;
     background-color: cadetblue;
     display: inline-block;
@@ -554,6 +563,7 @@ main
   main
   {
     margin-top:3.6rem;
+    font-size:0.8em;
   }
 
   .main-nav
@@ -567,9 +577,17 @@ main
 
 @media only screen and (max-width: 350px)
 {
-  #fichiers .image
+  #pop
   {
-    width: 45vw;
-    height: 45vw;
+	font-size: 0.8em;
+  }
+  #fichiers .image, #fichiers .dossier
+  {
+    width: 46vw;
+    height: 46vw;
+  }
+  #pop .pop--nav .button
+  {
+    margin-bottom: 0.5em;
   }
 }
