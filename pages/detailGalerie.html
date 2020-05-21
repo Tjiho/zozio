@@ -18,16 +18,16 @@
 
                 <div class="exif-resume">
                     <span class="exif-resume__data">
-                        <img src="/static/images/aperture.svg" class="exif-resume__data__icon"/>
+                        <img src="/static/images/aperture.svg" class="exif-resume__data__icon" alt="aperture icon"/>
                         {{index .ExifData "F-Number"}}
                     </span>
                     <span class="exif-resume__data">
-                        <img src="/static/images/exposure.svg" class="exif-resume__data__icon"/>
+                        <img src="/static/images/exposure.svg" class="exif-resume__data__icon" alt="exposure icon"/>
                         {{index .ExifData "Exposure Time"}}
                     </span>
                     <br/>
                     <span class="exif-resume__data">
-                        <img src="/static/images/focal.svg" class="exif-resume__data__icon"/>
+                        <img src="/static/images/focal.svg" class="exif-resume__data__icon" alt="focal icon"/>
                         {{index .ExifData "Focal Length"}}
                     </span>
                     <span class="exif-resume__data">
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="action_bar">
-                    <a href="/static/galerie/{{.Path}}" download="" class="action"><img src="/static/images/download.svg">Download</a>
+                    <a href="/static/galerie/{{.Path}}" download="" class="action"><img src="/static/images/download.svg" alt="download icon">Download</a>
                     <span class="action"></span>
                     <span class="action"></span>
                 </div>

@@ -1,6 +1,6 @@
 {{ define "page" }}
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
   <head>
 
@@ -11,7 +11,7 @@
     <script src="/static/js/slider.js"></script>
     <script src="/static/js/nightMode.js"></script>
 
-    <title></title>
+    <title>Zozios !</title>
 
   </head>
 
@@ -31,29 +31,17 @@
     </div>
   	</main>
     <div id="pop">
-      <img class="quit" src="/static/images/cross.svg" onclick="cacheSlider()"/>
-      <div class="pop--nav">
-        <span class="pop--previous">
-          <div class="button" id="pop--previous-button">Previous</div>
-        </span>
-        <span class="pop--nav--center">
-          <div class="button" onclick="cacheSlider()">Retour</div>
-          <div class="button">Download</div>
-        </span>
-        <span class="pop--next">
-          <div class="button" id="pop--next-button">Next</div>
-        </span>
+      <img class="quit" src="/static/images/cross.svg" onclick="cacheSlider()" alt="Fermer le diaporama"/>
 
-      </div>
       <div class="container_all">
         <div class="images">
-          <img class="visible" src="/static/galerie/fleurs/flower-179004.jpg"/>
+          <img class="visible" src="/static/galerie/fleurs/flower-179004.jpg" alt="Image principale du diaporama"/>
         </div>
       </div>
-
+</div>
 
 <!-- Matomo -->
-<script type="text/javascript">
+<script>
   var _paq = window._paq || [];
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
   _paq.push(['trackPageView']);
