@@ -114,8 +114,9 @@ h2
 	text-transform:capitalize;
 	font-weight:100;
 	font-size:3em;
-  padding-left: 3vw;
+  /*padding-left: 3vw;*/
   margin: 0;
+	text-align:center;
 }
 
 main
@@ -191,28 +192,41 @@ main
     align-items: center;
     vertical-align: middle;
     opacity: 0.8;
-    /*border:2px solid white;*/
+    border:2px solid white;
 	margin: 2em;
-	background-image: url("/static/images/zozios.jpg");
+	/*background-image: url("/static/images/zozios.jpg");*/
     background-size: cover;
 	color:var(--fg-color);
 	text-decoration:none;
 	font-variant:small-caps;
 	font-size:1em;
+/*box-shadow: 0 0 4px 0px rgba(0,0,0) inset;*/
+	position:relative;
 }
 
 #fichiers .dossier h3
 {
-	background-color: #ffffffe8;
+	background-color: #fff;
 	padding: 0.5em;
 	width:10em;
 	text-align:center;
 	border-radius: 0em;
 	font-weight:normal;
-    color:black;
+    	color:black;
+	border:1px solid #666;
 }
 
-
+#fichier .dossier::before
+{
+content:" ";
+display:block;
+position:absolute;
+height:100%;
+width:100%;
+top:0;
+left:0;
+background-color:rgba(50,0,200,0.2);
+}
 
 /********************************************************************/
 
@@ -240,7 +254,7 @@ main
     height: 250px;
     display: inline-block;
     box-shadow: none;
-    box-shadow: 1px 1px 20px rgba(0,0,0,0.3);
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.3);
     background-size:cover;
     background-position-x:center;
 }
@@ -428,6 +442,9 @@ main
     padding: 2vw;
     display: flex;
     flex-wrap: wrap;
+    max-width: 1440px; 
+    margin:auto;
+    justify-content: center;
   }
   #fichiers .dossier
   {

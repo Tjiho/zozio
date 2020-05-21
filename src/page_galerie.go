@@ -38,7 +38,7 @@ func galerie(response http.ResponseWriter, request *http.Request) {
 		NightMode bool
 	}{
 		names_files,
-		"Les galeries",
+		"Les albums photo",
 		true,
 		"galeries",
 		nightMode,

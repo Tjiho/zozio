@@ -1,9 +1,22 @@
+var stringToColour = function(str) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    var colour = '#';
+    for (var i = 0; i < 3; i++) {
+        var value = (hash >> (i * 8)) & 0xFF;
+        colour += ('00' + value.toString(16)).substr(-2);
+    }
+    return colour;
+}
+
 function stringToInt(str)
 {
     var total = 0;
     for(var lettre of str)
     {
-        total = total + lettre.charCodeAt(0);
+        total = total + lettre.charCodeAt(0)/2;
     }    
     return total;
 }
@@ -16,9 +29,11 @@ function coloration()
     {
         var str = ele.getElementsByTagName("h3")[0].innerText;
         
-        value = stringToInt(str) % 9;
-        
-        ele.style.borderColor = color[value];
+        value = Math.round(stringToInt(str)) % 8;
+       console.log(str) 
+       console.log(value) 
+        ele.style.borderColor = stringToColour(str);
+        ele.style.backgroundColor = stringToColour(str)+'88';
     }
 }
 
