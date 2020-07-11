@@ -32,7 +32,7 @@ body
   --main-bg-color: #DFE2E6;
   --nav-bg-color: white;
   --fg-color:black;
-  --pop-bg:#1C0026F2;
+  --pop-bg:#000000EE;
   --pop-nav-bg: #33153f;
   color:var(--fg-color);
   --icon-invert:invert(0%);
@@ -456,6 +456,7 @@ h2
   {
     top:20px;
     left: 20px;
+    font-size:1rem;
   }
 
   #pop .images
@@ -476,7 +477,8 @@ h2
     z-index: 3;
     object-fit: contain;
     box-shadow: 1px 1px 6px rgba(0,0,0,0.3);
-    border:3px solid white;
+    border:2px solid white;
+    max-width:30vh;
   }
 
   #pop .images img.previous-img
