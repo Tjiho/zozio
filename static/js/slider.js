@@ -38,7 +38,10 @@ function slider(image)
     }
     img_dom.src = image;
 
-    img_dom.onclick = (e) => { window.open(list_original[index]) }
+    if(window.screen.width > 800) {
+      img_dom.onclick = (e) => { downloadCurrentImg(index) }
+    }
+
 }
 
 // enable click for next img
@@ -140,7 +143,10 @@ function resetState(previousImg,currentImg,nextImg,index_image)
 
     currentImg.classList.add('visible')
     console.log(currentImg)
-    currentImg.onclick = (e) => { window.open(list_original[index_image]) }
+
+    if(window.screen.width > 800) {
+      currentImg.onclick = (e) => { downloadCurrentImg(index_image) }
+    }
 }
 
 
@@ -160,4 +166,8 @@ function previous(index_image)
     var precedent = enCours.previousElementSibling;
     var suivant = enCours.nextElementSibling;
     resetState(precedent.previousElementSibling,precedent,enCours,index_image-1)
+}
+
+function downloadCurrentImg(index) {
+    window.open(list_original[index])
 }
