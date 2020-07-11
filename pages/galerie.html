@@ -1,17 +1,26 @@
 {{ define "content" }}
 
-<section id="fichiers">
+<section id="fichiers" class="no-mobile">
     {{range .Files}}
                 <a href="galerie/{{.}}.html" class="dossier">
                     <h3>{{.}}</h3>
                 </a>
     {{end}}
-   
+
 <!--
     <div class="ajout" style="background-color: white;">
         <img src="static/images/plus.svg"/>
     </div>
 -->
+</section>
+
+<section class="mobile">
+    {{range .Files}}
+                <a href="galerie/{{.}}.html" class="dossier-line">
+                    <div class="dossier"></div>
+                    <h3>{{.}}</h3>
+                </a>
+    {{end}}
 </section>
 <script src="/static/js/galerie.js"></script>
 {{ end }}

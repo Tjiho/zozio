@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="https://fonts.ppsfleet.navy/Josephin_sans/style.css" />
     <script src="/static/js/slider.js"></script>
     <script src="/static/js/nightMode.js"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Zozios !</title>
 
   </head>
@@ -30,8 +30,8 @@
     </div>
   	</main>
     <div id="pop">
-      <img class="quit" src="/static/images/cross.svg" onclick="cacheSlider()" alt="Fermer le diaporama"/>
-
+      <button class="quit no-mobile" onclick="cacheSlider()" alt="Fermer le diaporama">Fermer le diaporama</button>
+      <button class="quit mobile" onclick="cacheSlider()" alt="Fermer le diaporama">Fermer</button>
       <div class="container_all">
         <div class="images">
           <img class="visible" src="/static/galerie/fleurs/flower-179004.jpg" alt="Image principale du diaporama"/>
