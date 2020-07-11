@@ -147,6 +147,10 @@ function resetState(previousImg,currentImg,nextImg,index_image)
     if(window.screen.width > 800) {
       currentImg.onclick = (e) => { downloadCurrentImg(index_image) }
     }
+    else
+    {
+      currentImg.onclick = null
+    }
 }
 
 
