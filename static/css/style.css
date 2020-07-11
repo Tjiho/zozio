@@ -443,7 +443,7 @@ h2
 {
   .no-mobile
   {
-    display: none;
+    display: none !important;
   }
 
   #pop .container_all
@@ -493,10 +493,6 @@ h2
     width: 40vw;
   }
 
-}
-
-@media only screen and (max-width: 700px)
-{
   .main-nav
   {
     background-color: white;
@@ -536,6 +532,34 @@ h2
   #fichiers .action_bar
   {
     display: none;
+  }
+
+  .dossier-line
+  {
+    display: flex;
+    border-bottom: 1px solid grey;
+    padding: 1rem;
+    flex-direction:row;
+    color:black;
+    align-items: center;
+  }
+
+  .dossier-line .dossier
+  {
+    width: 3rem;
+    height: 3rem;
+    display: block;
+    background-color: black;
+    margin-right: 1rem;
+    background-image: url("/static/images/zozios.jpg");
+    background-size: cover;
+  }
+
+  .dossier-line h3
+  {
+    flex:1;
+    margin: 0;
+    padding: 0;
   }
 
 }

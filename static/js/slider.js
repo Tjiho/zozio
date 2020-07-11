@@ -38,7 +38,7 @@ function slider(image)
     }
     img_dom.src = image;
 
-    if(window.screen.width > 800) {
+    if(window.screen.width > 850) {
       img_dom.onclick = (e) => { downloadCurrentImg(index) }
     }
 
