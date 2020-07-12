@@ -127,8 +127,6 @@ func detailGalerie(response http.ResponseWriter, request *http.Request) {
 				password := request.Form.Get("password")
 				if (string(password) == string(trimData)) {
 					authorized = true
-					session.Values["access-" + vars["dossier"]] = true
-			    session.Save(request, response)
 				}
 			}
   }
@@ -139,6 +137,8 @@ func detailGalerie(response http.ResponseWriter, request *http.Request) {
 	}
 
 	if authorized	{
+		session.Values["access-" + vars["dossier"]] = true
+		session.Save(request, response)
 		files, _ := ioutil.ReadDir(path)
 		names_files := []ImageSimple{}
 		i := 0

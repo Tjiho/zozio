@@ -20,6 +20,8 @@ type ImageSimple struct {
 	ExifData map[string]string
 }
 
+type httpFunc func(http.ResponseWriter, *http.Request)
+
 var router = mux.NewRouter()
 
 func main() {

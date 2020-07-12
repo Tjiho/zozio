@@ -107,20 +107,49 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 
 
 func miniature(response http.ResponseWriter, request *http.Request) {
-
 	vars := mux.Vars(request)
-	pathMinDir := ".cache/" + vars["dossier"] + "/min/"
-	createMiniature(vars["dossier"],vars["file"],pathMinDir,300,response,request)
+	session, session_err := store.Get(request, "zozio")
+	if session_err != nil {
+			http.Error(response, session_err.Error(), http.StatusInternalServerError)
+			return
+	}
+	session_auth, session_done := session.Values["access-" + vars["dossier"]].(bool)
+	if (session_auth && session_done)	{
+		pathMinDir := ".cache/" + vars["dossier"] + "/min/"
+		createMiniature(vars["dossier"],vars["file"],pathMinDir,300,response,request)
+	} else {
+		response.WriteHeader(400)
+	}
 }
 
 
 func bigMiniature(response http.ResponseWriter, request *http.Request) {
-		vars := mux.Vars(request)
+	vars := mux.Vars(request)
+	session, session_err := store.Get(request, "zozio")
+	if session_err != nil {
+			http.Error(response, session_err.Error(), http.StatusInternalServerError)
+			return
+	}
+	session_auth, session_done := session.Values["access-" + vars["dossier"]].(bool)
+	if (session_auth && session_done)	{
 		pathMinDir := ".cache/" + vars["dossier"] + "/bigMin/"
 		createMiniature(vars["dossier"],vars["file"],pathMinDir,1500,response,request)
+	} else {
+		response.WriteHeader(400)
+	}
 }
 
 func original(response http.ResponseWriter, request *http.Request) {
-		vars := mux.Vars(request)
+	vars := mux.Vars(request)
+	session, session_err := store.Get(request, "zozio")
+	if session_err != nil {
+			http.Error(response, session_err.Error(), http.StatusInternalServerError)
+			return
+	}
+	session_auth, session_done := session.Values["access-" + vars["dossier"]].(bool)
+	if (session_auth && session_done)	{
 		http.ServeFile(response, request, "galerie/" + vars["dossier"] + "/" + vars["file"])
+	} else {
+		response.WriteHeader(400)
+	}		
 }
