@@ -124,6 +124,40 @@ h2
 	text-align:center;
 }
 
+form
+{
+  max-width: 400px;
+  margin: 1.5rem auto;
+  padding: 0.5rem;
+}
+
+input
+{
+  display: block;
+  margin-top: 1rem;
+  width: 100%;
+  height: 3rem;
+}
+
+input[type="password"]
+{
+  border: 1px solid lightgrey;
+  background-color: white;
+  padding: 1rem;
+}
+
+input[type="submit"]
+{
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  background-color: #8BC6EC;
+background-image: linear-gradient(135deg, #4C9CD0 0%, #4A4FA4 100%);
+
+font-weight: 800;
+ color:white;
+}
+
 #fichiers
 {
   padding: 2vw;

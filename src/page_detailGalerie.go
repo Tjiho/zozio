@@ -10,6 +10,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"log"
+	"strings"
 	"path/filepath"
 	"github.com/xiam/exif"
 )
@@ -72,68 +73,131 @@ func sortImagesByDate(files []string,len int) []string{
 	return files
 }
 
-
-func detailGalerie(response http.ResponseWriter, request *http.Request) {
+func passwdPage(response http.ResponseWriter, request *http.Request) {
 	vars := mux.Vars(request)
-	path := "static/galerie/" + vars["dossier"]
-	files, _ := ioutil.ReadDir(path)
-	names_files := []ImageSimple{}
-	i := 0
-	//list files
-	for _, f := range files {
-		var extension = filepath.Ext(f.Name())
-
-		if !f.IsDir() && (extension == ".jpg" || extension == ".JPG" || extension == ".png" || extension == ".PNG") {
-			data, err := exif.Read(path+ "/" + f.Name())
-			if err == nil {
-				names_files = append(names_files, ImageSimple { //Todo: use a list and not a Slice
-					Name: f.Name(),
-					Path: vars["dossier"]+"/"+f.Name(),
-					ExifData: data.Tags,
-				})
-			} else {
-				names_files = append(names_files, ImageSimple { //Todo: use a list and not a Slice
-					Name: f.Name(),
-					Path: vars["dossier"]+"/"+f.Name(),
-					ExifData: nil,
-				})
-			}
-			i = i+1
-
-		}
-
-	}
-	names_files = sortImagesByDateInsertion(names_files,i)
-
-	//create menu
-	links := []Link{
-		Link{
-			Image: "/static/images/home.svg",
-			Link:  "/",
-		},
-	}
 
 	data := struct {
-		Files      []ImageSimple
 		Title      string
-		Links      []Link
 		Nav        bool
 		Content_id string
 		NightMode bool
+		Dossier string
 	}{
-		names_files,
-		vars["dossier"],
-		links,
+		"Page protégée",
 		true,
-		"photos",
+		"passwd",
 		getNightValue(request),
+		vars["dossier"],
 	}
 
 	t := template.New("")
-	t = template.Must(t.ParseFiles("pages/template.html", "pages/detailGalerie.html", "pages/header-menu.html"))
+
+	t = template.Must(t.ParseFiles("pages/template.html", "pages/password.html", "pages/header-menu.html"))
 	err := t.ExecuteTemplate(response, "page", data)
 
 	if err != nil {
 		log.Fatalf("Template execution: %s", err)
+	}
+}
+
+func detailGalerie(response http.ResponseWriter, request *http.Request) {
+	vars := mux.Vars(request)
+	session, session_err := store.Get(request, "zozio")
+	if session_err != nil {
+			http.Error(response, session_err.Error(), http.StatusInternalServerError)
+			return
+	}
+	path := "static/galerie/" + vars["dossier"]
+	path_passwd_file := path + "/passwd.txt"
+	authorized := true
+	data, err := ioutil.ReadFile(path_passwd_file)
+	trimData := strings.TrimSpace(string(data))
+
+  if err == nil {
+			authorized = false
+			session_auth, session_done := session.Values["access-" + vars["dossier"]].(bool)
+			if (session_auth && session_done)	{
+				authorized = true
+			} else {
+				err = request.ParseForm()
+				if err != nil {
+					response.WriteHeader(400)
+			    return
+				}
+				password := request.Form.Get("password")
+				if (string(password) == string(trimData)) {
+					authorized = true
+					session.Values["access-" + vars["dossier"]] = true
+			    session.Save(request, response)
+				}
+			}
+  }
+
+  if !authorized {
+		response.WriteHeader(401)
+		passwdPage(response,request)
+	}
+
+	if authorized	{
+		files, _ := ioutil.ReadDir(path)
+		names_files := []ImageSimple{}
+		i := 0
+		//list files
+		for _, f := range files {
+			var extension = filepath.Ext(f.Name())
+
+			if !f.IsDir() && (extension == ".jpg" || extension == ".JPG" || extension == ".png" || extension == ".PNG") {
+				data, err := exif.Read(path+ "/" + f.Name())
+				if err == nil {
+					names_files = append(names_files, ImageSimple { //Todo: use a list and not a Slice
+						Name: f.Name(),
+						Path: vars["dossier"]+"/"+f.Name(),
+						ExifData: data.Tags,
+					})
+				} else {
+					names_files = append(names_files, ImageSimple { //Todo: use a list and not a Slice
+						Name: f.Name(),
+						Path: vars["dossier"]+"/"+f.Name(),
+						ExifData: nil,
+					})
+				}
+				i = i+1
+
+			}
+
+		}
+		names_files = sortImagesByDateInsertion(names_files,i)
+
+		//create menu
+		links := []Link{
+			Link{
+				Image: "/static/images/home.svg",
+				Link:  "/",
+			},
+		}
+
+		data := struct {
+			Files      []ImageSimple
+			Title      string
+			Links      []Link
+			Nav        bool
+			Content_id string
+			NightMode bool
+		}{
+			names_files,
+			vars["dossier"],
+			links,
+			true,
+			"photos",
+			getNightValue(request),
+		}
+
+		t := template.New("")
+		t = template.Must(t.ParseFiles("pages/template.html", "pages/detailGalerie.html", "pages/header-menu.html"))
+		err := t.ExecuteTemplate(response, "page", data)
+
+		if err != nil {
+			log.Fatalf("Template execution: %s", err)
+		}
 	}
 }
