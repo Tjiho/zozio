@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	//"path"
 	"path/filepath"
 	"github.com/gorilla/mux"
 	"github.com/nfnt/resize"
@@ -16,13 +17,11 @@ import (
 )
 
 func createMiniature(dossier string,fileName string,pathMinDir string,size uint,response http.ResponseWriter, request *http.Request) {
-	path := "static/galerie/" + dossier + "/" + fileName
+	completePath := "galerie/" + dossier + "/" + fileName
 	pathMinFile := pathMinDir + fileName
 	ok := true
 
-	//get image
-
-	file, err := os.Open(path)
+	file, err := os.Open(completePath)
 	if err != nil {
 		log.Fatal("\n\roups:", err)
 		response.WriteHeader(http.StatusNotFound)
@@ -34,7 +33,7 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 	stat, err := os.Stat(pathMinDir)
 	if err != nil {
 		if os.IsNotExist(err) {
-			os.Mkdir(pathMinDir, os.FileMode(0755))
+			os.MkdirAll(pathMinDir, os.FileMode(0755))
 		} else {
 			fmt.Printf("error!")
 			response.WriteHeader(http.StatusInternalServerError)
@@ -72,7 +71,7 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 				// resize
 				m := resize.Thumbnail(size, size, img, resize.Lanczos3)
 
-				data, err := exif.Read(path)
+				data, err := exif.Read(completePath)
 				if err == nil {
 					if(data.Tags["Orientation"] == "Bottom-right"){
 						m = imaging.Rotate180(m)
@@ -100,7 +99,8 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 				response.WriteHeader(http.StatusInternalServerError)
 			}
 		}
-		http.Redirect(response, request, "/"+pathMinFile, http.StatusTemporaryRedirect)
+		http.ServeFile(response, request, pathMinFile)
+		//http.Redirect(response, request, "/"+pathMinFile, http.StatusTemporaryRedirect)
 	}
 
 }
@@ -109,16 +109,18 @@ func createMiniature(dossier string,fileName string,pathMinDir string,size uint,
 func miniature(response http.ResponseWriter, request *http.Request) {
 
 	vars := mux.Vars(request)
-	pathMinDir := "static/galerie/" + vars["dossier"] + "/min/"
-
+	pathMinDir := ".cache/" + vars["dossier"] + "/min/"
 	createMiniature(vars["dossier"],vars["file"],pathMinDir,300,response,request)
 }
 
 
 func bigMiniature(response http.ResponseWriter, request *http.Request) {
-
 		vars := mux.Vars(request)
-		pathMinDir := "static/galerie/" + vars["dossier"] + "/bigMin/"
-
+		pathMinDir := ".cache/" + vars["dossier"] + "/bigMin/"
 		createMiniature(vars["dossier"],vars["file"],pathMinDir,1500,response,request)
+}
+
+func original(response http.ResponseWriter, request *http.Request) {
+		vars := mux.Vars(request)
+		http.ServeFile(response, request, "galerie/" + vars["dossier"] + "/" + vars["file"])
 }

@@ -46,8 +46,8 @@ func sortImagesByDateInsertion(files []ImageSimple,len int) []ImageSimple{
 func sortImagesByDate(files []string,len int) []string{
 	for i:= len - 1; i > 0;i-- {
 		for j:= 0;j < i;j++ {
-			data1, err1 := exif.Read("static/galerie/"+files[j])
-			data2, err2 := exif.Read("static/galerie/"+files[j+1])
+			data1, err1 := exif.Read("galerie/"+files[j])
+			data2, err2 := exif.Read("galerie/"+files[j+1])
 			if err1 == nil {
 				if err2 == nil {
 					//date1 =
@@ -107,7 +107,7 @@ func detailGalerie(response http.ResponseWriter, request *http.Request) {
 			http.Error(response, session_err.Error(), http.StatusInternalServerError)
 			return
 	}
-	path := "static/galerie/" + vars["dossier"]
+	path := "galerie/" + vars["dossier"]
 	path_passwd_file := path + "/passwd.txt"
 	authorized := true
 	data, err := ioutil.ReadFile(path_passwd_file)

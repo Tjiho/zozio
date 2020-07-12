@@ -19,12 +19,12 @@ func galerie(response http.ResponseWriter, request *http.Request) {
     // isConnected, _ := session.Values["connected"].(bool)
 
 
-	files, _ := ioutil.ReadDir("./static/galerie")
+	files, _ := ioutil.ReadDir("./galerie")
 	names_files := []string{}
 	nightMode := getNightValue(request)
 
 	for _, f := range files {
-		if _, err := os.Stat("./static/galerie/"+f.Name()+"/private.txt");  os.IsNotExist(err) {
+		if _, err := os.Stat("./galerie/"+f.Name()+"/private.txt");  os.IsNotExist(err) {
 			names_files = Extend(names_files, f.Name())
 		}
 
